@@ -17,13 +17,6 @@ class MyWidget(QWidget):
         super().__init__(parent, f)
         self.logger = self.parent().parent().parent().textEdit
 
-    def printf(self, t):
-        self.txt += '\n'
-        self.txt += t
-        self.logger.setText(self.txt)
-        self.logger.moveCursor(QTextCursor.MoveOperation.End)
-        self.logger.textCursor()
-
 
 class N1C3_RoI(MyWidget):
     def on_mouse(self, event, x, y, flags: int, cfg: Cfg):

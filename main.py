@@ -8,16 +8,22 @@ import numpy as np
 import sys
 
 
-
 class MainWindow(QDialog):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.ui.tab_17.parent().parent().parent().p()
-    def p(self):
-        print('got')
-        
+        self.tabWidget.tabBarClicked.connect(self.printf)
+        self.logger = self.ui.textEdit
+        self.txt = ''
+
+    def printf(self, t):
+        self.txt += '\n'
+        self.txt += t
+        self.logger.setText(self.txt)
+        self.logger.moveCursor(QTextCursor.MoveOperation.End)
+        self.logger.textCursor()
 
 
 if __name__ == "__main__":
@@ -25,6 +31,5 @@ if __name__ == "__main__":
 
     window = MainWindow()
     window.show()
-    # print(window.ui.tab_17.aaa)
 
     sys.exit(app.exec())

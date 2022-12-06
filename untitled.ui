@@ -109,7 +109,24 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>tabBarClicked(int)</signal>
+   <receiver>textEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>165</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>178</x>
+     <y>72</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <signal>signal1()</signal>
  </slots>

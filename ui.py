@@ -87,6 +87,7 @@ class Ui_Dialog(object):
 
 
         self.retranslateUi(Dialog)
+        self.tabWidget.tabBarClicked.connect(self.textEdit.clear)
 
         self.tabWidget.setCurrentIndex(0)
 

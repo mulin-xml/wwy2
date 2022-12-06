@@ -6,12 +6,19 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "conda activate py39 ; pyinstaller main.py -F -w"
+            "command": "conda activate py39 ; pyinstaller main.py -F -w",
+            "problemMatcher": []
         },
         {
             "label": "uic",
             "type": "shell",
             "command": "conda activate py39 ; pyside6-uic untitled.ui | out-file ui.py -encoding utf8",
+            "problemMatcher": []
+        },
+        {
+            "label": "designer",
+            "type": "shell",
+            "command": "conda activate py39 ; pyside6-designer untitled.ui",
             "problemMatcher": []
         }
     ]
