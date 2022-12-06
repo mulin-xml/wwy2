@@ -38,7 +38,7 @@ def on_mouse(event, x, y, flags: int, cfg: Cfg):
         draw()
 
 
-def on_pos(x):  # 作为回调函数输出当前滑动条的位置
+def on_pos(x):
     cfg = Cfg()
     img = cfg.origins[x]
     cv2.normalize(img, img, 0, 65535, cv2.NORM_MINMAX)
