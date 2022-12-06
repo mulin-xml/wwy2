@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
-    <height>508</height>
+    <width>901</width>
+    <height>726</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -37,7 +37,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="MyTabWidget" name="tabWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
        <horstretch>0</horstretch>
@@ -47,7 +47,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_17">
+     <widget class="N1C3_RoI" name="tab_17">
       <attribute name="title">
        <string>N1C3 ROI</string>
       </attribute>
@@ -68,7 +68,7 @@
        <item>
         <widget class="QPushButton" name="pushButton_8">
          <property name="text">
-          <string>PushButton</string>
+          <string>打开图片</string>
          </property>
         </widget>
        </item>
@@ -87,15 +87,52 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_18">
+     <widget class="MyWidget" name="tab_18">
       <attribute name="title">
        <string>NxC1 ROI</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QPushButton" name="pushButton_9">
-         <property name="text">
-          <string>PushButton</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_9">
+           <property name="text">
+            <string>打开图片</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QSlider" name="horizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -104,30 +141,82 @@
     </widget>
    </item>
    <item>
-    <widget class="QGraphicsView" name="graphicsView"/>
+    <widget class="MyGraphicsView" name="graphicsView"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyWidget</class>
+   <extends>QWidget</extends>
+   <header>mywidget.h</header>
+   <container>1</container>
+   <slots>
+    <signal>signal1(str)</signal>
+    <slot>slot1()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>mytabwidget.h</header>
+   <container>1</container>
+   <slots>
+    <slot>on_mouse(int,QMouseEvent)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>mygraphicsview.h</header>
+   <slots>
+    <signal>mouseSig(int,QMouseEvent)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>N1C3_RoI</class>
+   <extends>QWidget</extends>
+   <header>n1c3_roi.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
    <sender>tabWidget</sender>
-   <signal>tabBarClicked(int)</signal>
-   <receiver>textEdit</receiver>
-   <slot>clear()</slot>
+   <signal>currentChanged(int)</signal>
+   <receiver>Dialog</receiver>
+   <slot>on_changed(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>165</x>
-     <y>162</y>
+     <x>841</x>
+     <y>172</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>72</y>
+     <x>940</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>graphicsView</sender>
+   <signal>mouseSig(int,QMouseEvent)</signal>
+   <receiver>tabWidget</receiver>
+   <slot>on_mouse(int,QMouseEvent)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>353</x>
+     <y>370</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>391</x>
+     <y>135</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
   <signal>signal1()</signal>
+  <slot>on_changed(int)</slot>
  </slots>
 </ui>
