@@ -113,6 +113,8 @@ class Ui_Dialog(object):
 
         self.graphicsView = MyGraphicsView(Dialog)
         self.graphicsView.setObjectName(u"graphicsView")
+        self.graphicsView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.graphicsView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
         self.verticalLayout.addWidget(self.graphicsView)
 
@@ -131,7 +133,7 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.graphicsView.mouseSig.connect(self.tabWidget.on_mouse)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)

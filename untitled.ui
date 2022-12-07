@@ -29,7 +29,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="N1C3_RoI" name="tab_17">
       <attribute name="title">
@@ -165,7 +165,14 @@
     </widget>
    </item>
    <item>
-    <widget class="MyGraphicsView" name="graphicsView"/>
+    <widget class="MyGraphicsView" name="graphicsView">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTextEdit" name="textEdit">

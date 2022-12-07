@@ -1,8 +1,11 @@
 from PySide6.QtWidgets import QApplication, QDialog, QGraphicsScene
-from PySide6.QtGui import QTextCursor, QImage, QPixmap
+from PySide6.QtGui import QTextCursor, QImage, QPixmap, QColor
+from PySide6.QtCore import Qt
 from lib.ui import Ui_Dialog
 
+import numpy as np
 import sys
+import cv2
 
 
 class MainWindow(QDialog):
@@ -16,8 +19,9 @@ class MainWindow(QDialog):
         self.scene = QGraphicsScene()
         self.ui.graphicsView.setScene(self.scene)
 
-        # 连线
+        # 补充连线
         self.ui.pushButton_8.clicked.connect(self.ui.tab_17.openfile)
+        self.ui.pushButton.clicked.connect(self.ui.tab_17.savefile)
 
     def printf(self, t):
         self.txt += '\n'
@@ -26,12 +30,22 @@ class MainWindow(QDialog):
         self.logger.moveCursor(QTextCursor.MoveOperation.End)
         self.logger.textCursor()
 
-    def imshow(self, img):
-        y, x = img.shape[:-1]
-        frame = QImage(img, x, y, QImage.Format.Format_BGR888)
+    def imshow(self, img: np.ndarray):
+        height, width, depth = img.shape
+        frame = QImage(img, width, height, width * depth, self.__calc_format(depth))
+
         self.scene.clear()
-        self.pix = QPixmap.fromImage(frame)
-        self.scene.addPixmap(self.pix)
+        self.scene.addPixmap(QPixmap.fromImage(frame))
+        self.scene.addRect(0, 0, 1000, 1000, pen=QColor(Qt.GlobalColor.red))
+        self.scene.addRect(-1000, -1000, 1000, 1000, pen=QColor(Qt.GlobalColor.green))
+
+    def __calc_format(self, depth):
+        if depth == 1:
+            return QImage.Format.Format_Grayscale8
+        elif depth == 3:
+            return QImage.Format.Format_BGR888
+        elif depth == 4:
+            return QImage.Format.Format_RGBA8888
 
 
 if __name__ == "__main__":
