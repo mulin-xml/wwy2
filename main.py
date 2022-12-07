@@ -22,6 +22,7 @@ class MainWindow(QDialog):
         # 补充连线
         self.ui.pushButton_8.clicked.connect(self.ui.tab_17.openfile)
         self.ui.pushButton.clicked.connect(self.ui.tab_17.savefile)
+        self.ui.pushButton_9.clicked.connect(self.ui.tab_18.openfile)
 
     def printf(self, t):
         self.txt += '\n'
@@ -33,11 +34,8 @@ class MainWindow(QDialog):
     def imshow(self, img: np.ndarray):
         height, width, depth = img.shape
         frame = QImage(img, width, height, width * depth, self.__calc_format(depth))
-
         self.scene.clear()
         self.scene.addPixmap(QPixmap.fromImage(frame))
-        self.scene.addRect(0, 0, 1000, 1000, pen=QColor(Qt.GlobalColor.red))
-        self.scene.addRect(-1000, -1000, 1000, 1000, pen=QColor(Qt.GlobalColor.green))
 
     def __calc_format(self, depth):
         if depth == 1:

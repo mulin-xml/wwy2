@@ -1,40 +1,38 @@
 from PySide6.QtWidgets import QGraphicsView
 from PySide6.QtGui import QMouseEvent, QWheelEvent
-from PySide6.QtCore import Signal, Qt, QPoint, QPointF
+from PySide6.QtCore import Signal, Qt, QPointF
 
 
 class MyGraphicsView(QGraphicsView):
-    mouseSig = Signal(int, QMouseEvent)
+    mouseSig = Signal(int, QPointF)
 
     def __init__(self, parent):
         super(MyGraphicsView, self).__init__(parent)
-        self.anchor = QPoint()
+        self.anchor = QPointF()
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.RightButton:
-            self.anchor = event.pos()
-            a = self.mapToScene(self.anchor)
-            self.scene().addEllipse(a.x(), a.y(), 2, 2)
+            self.anchor = event.position()
+        elif event.buttons() == Qt.MouseButton.LeftButton:
+            self.mouseSig.emit(0, self.mapToScene(event.pos()))
         else:
-            self.mouseSig.emit(0, event)
+            pass
         return super().mousePressEvent(event)
-
-    def mouseReleaseEvent(self, event: QMouseEvent) -> None:
-        self.mouseSig.emit(1, event)
-        return super().mouseReleaseEvent(event)
 
     def mouseMoveEvent(self, event: QMouseEvent) -> None:
         if event.buttons() == Qt.MouseButton.RightButton:
-            delta = event.pos() - self.anchor
-            # center = QPoint(self.width() * 0.5 - delta.x(), self.height() * 0.5 - delta.y())
-            # self.centerOn(self.mapToScene(center))
-            sr = self.scene().sceneRect()
-            self.scene().setSceneRect(sr.x() - delta.x(), sr.y() - delta.y(), sr.width(), sr.height())
+            delta = event.position() - self.anchor
+            self.anchor = event.position()
+            # 必须设置为TransformationAnchor::NoAnchor
+            self.translate(delta.x() / self.transform().m11(), delta.y() / self.transform().m22())
+        elif event.buttons() == Qt.MouseButton.LeftButton:
+            self.mouseSig.emit(2, self.mapToScene(event.pos()))
         else:
-            self.mouseSig.emit(2, event)
+            pass
         return super().mouseMoveEvent(event)
 
     def wheelEvent(self, event: QWheelEvent) -> None:
+        # 必须设置为ResizeAnchor::AnchorUnderMouse
         if event.angleDelta().y() > 0:
             self.scale(1.2, 1.2)
         else:

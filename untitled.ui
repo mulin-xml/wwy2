@@ -29,7 +29,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="N1C3_RoI" name="tab_17">
       <attribute name="title">
@@ -91,7 +91,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="MyWidget" name="tab_18">
+     <widget class="NxC1_RoI" name="tab_18">
       <attribute name="title">
        <string>NxC1 ROI</string>
       </attribute>
@@ -167,10 +167,19 @@
    <item>
     <widget class="MyGraphicsView" name="graphicsView">
      <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+      <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="dragMode">
+      <enum>QGraphicsView::NoDrag</enum>
+     </property>
+     <property name="transformationAnchor">
+      <enum>QGraphicsView::NoAnchor</enum>
+     </property>
+     <property name="resizeAnchor">
+      <enum>QGraphicsView::AnchorUnderMouse</enum>
      </property>
     </widget>
    </item>
@@ -194,16 +203,6 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyWidget</class>
-   <extends>QWidget</extends>
-   <header>lib/mywidget.h</header>
-   <container>1</container>
-   <slots>
-    <signal>signal1(str)</signal>
-    <slot>slot1()</slot>
-   </slots>
-  </customwidget>
-  <customwidget>
    <class>MyTabWidget</class>
    <extends>QTabWidget</extends>
    <header>lib/mytabwidget.h</header>
@@ -224,6 +223,12 @@
    <class>N1C3_RoI</class>
    <extends>QWidget</extends>
    <header>n1c3_roi.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>NxC1_RoI</class>
+   <extends>QWidget</extends>
+   <header>nxc1_roi.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
