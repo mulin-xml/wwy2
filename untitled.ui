@@ -21,22 +21,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTextEdit" name="textEdit">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>100</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="MyTabWidget" name="tabWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -45,7 +29,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="N1C3_RoI" name="tab_17">
       <attribute name="title">
@@ -74,6 +58,26 @@
        </item>
        <item>
         <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>保存图片</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -115,6 +119,26 @@
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="text">
+            <string>PushButton</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_3">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -143,13 +167,29 @@
    <item>
     <widget class="MyGraphicsView" name="graphicsView"/>
    </item>
+   <item>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
    <class>MyWidget</class>
    <extends>QWidget</extends>
-   <header>mywidget.h</header>
+   <header>lib/mywidget.h</header>
    <container>1</container>
    <slots>
     <signal>signal1(str)</signal>
@@ -159,7 +199,7 @@
   <customwidget>
    <class>MyTabWidget</class>
    <extends>QTabWidget</extends>
-   <header>mytabwidget.h</header>
+   <header>lib/mytabwidget.h</header>
    <container>1</container>
    <slots>
     <slot>on_mouse(int,QMouseEvent)</slot>
@@ -168,7 +208,7 @@
   <customwidget>
    <class>MyGraphicsView</class>
    <extends>QGraphicsView</extends>
-   <header>mygraphicsview.h</header>
+   <header>lib/mygraphicsview.h</header>
    <slots>
     <signal>mouseSig(int,QMouseEvent)</signal>
    </slots>
@@ -182,22 +222,6 @@
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>tabWidget</sender>
-   <signal>currentChanged(int)</signal>
-   <receiver>Dialog</receiver>
-   <slot>on_changed(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>841</x>
-     <y>172</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>940</x>
-     <y>176</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>graphicsView</sender>
    <signal>mouseSig(int,QMouseEvent)</signal>

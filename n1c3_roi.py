@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QApplication, QPushButton, QFileDialog, QTextEdit, QVBoxLayout, QWidget
 from PySide6.QtGui import QTextCursor, QMouseEvent
 from PySide6.QtCore import Slot, Qt
-from mywidget import MyWidget
+from lib.mywidget import MyWidget
 import numpy as np
 import cv2
 import sys
@@ -22,16 +22,18 @@ class N1C3_RoI(MyWidget):
             self.d = max(event.y() - self.yy, event.x() - self.xx)
             img = self.origin.copy()
             cv2.rectangle(img, (self.xx, self.yy), (self.xx + self.d, self.yy + self.d), (0, 255, 0), 2)
-            cv2.imshow('image', img)
-        else:
+            self.imshow(img)
+        elif type == 1:
             pass
+        else:
+            self.printf(type, event.buttons())
 
     def openfile(self):
         path, _ = QFileDialog().getOpenFileName()
         self.origin = cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_COLOR)
         self.imshow(self.origin)
 
-    def q(self):
+    def on_save(self):
         for i in range(3):
             j = np.zeros((self.d, self.d, 3))
             j[:, :, i] = self.origin[self.yy:self.yy + self.d, self.xx:self.xx + self.d, i]

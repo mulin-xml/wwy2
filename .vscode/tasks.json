@@ -12,7 +12,7 @@
         {
             "label": "uic",
             "type": "shell",
-            "command": "conda activate py39 ; pyside6-uic untitled.ui | out-file ui.py -encoding utf8",
+            "command": "conda activate py39 ; pyside6-uic untitled.ui -o lib/ui.py --from-imports",
             "problemMatcher": []
         },
         {
