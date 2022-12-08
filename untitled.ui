@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>901</width>
-    <height>726</height>
+    <width>827</width>
+    <height>785</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -29,69 +29,83 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="N1C3_RoI" name="tab_17">
+     <widget class="N1C3_RoI" name="tab_N1C3_RoI">
       <attribute name="title">
        <string>N1C3 ROI</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_8">
+           <property name="text">
+            <string>打开图片</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>保存图片</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_8">
-         <property name="text">
-          <string>打开图片</string>
+        <widget class="MyGraphicsView" name="graphicsView">
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
         </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>保存图片</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
-     <widget class="NxC1_RoI" name="tab_18">
+     <widget class="NxC1_RoI" name="tab_NxC1_RoI">
       <attribute name="title">
        <string>NxC1 ROI</string>
       </attribute>
@@ -160,27 +174,16 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="MyGraphicsView" name="graphicsView_2"/>
+       </item>
       </layout>
      </widget>
-    </widget>
-   </item>
-   <item>
-    <widget class="MyGraphicsView" name="graphicsView">
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
-     </property>
-     <property name="dragMode">
-      <enum>QGraphicsView::NoDrag</enum>
-     </property>
-     <property name="transformationAnchor">
-      <enum>QGraphicsView::NoAnchor</enum>
-     </property>
-     <property name="resizeAnchor">
-      <enum>QGraphicsView::AnchorUnderMouse</enum>
-     </property>
+     <widget class="MyWidget" name="tab">
+      <attribute name="title">
+       <string>future</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
    <item>
@@ -203,21 +206,24 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MyWidget</class>
+   <extends>QWidget</extends>
+   <header>lib/mywidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MyTabWidget</class>
    <extends>QTabWidget</extends>
    <header>lib/mytabwidget.h</header>
    <container>1</container>
    <slots>
-    <slot>on_mouse(int,QMouseEvent)</slot>
+    <slot>on_mouse()</slot>
    </slots>
   </customwidget>
   <customwidget>
    <class>MyGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>lib/mygraphicsview.h</header>
-   <slots>
-    <signal>mouseSig(int,QMouseEvent)</signal>
-   </slots>
   </customwidget>
   <customwidget>
    <class>N1C3_RoI</class>
@@ -233,26 +239,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>graphicsView</sender>
-   <signal>mouseSig(int,QMouseEvent)</signal>
-   <receiver>tabWidget</receiver>
-   <slot>on_mouse(int,QMouseEvent)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>353</x>
-     <y>370</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>391</x>
-     <y>135</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
- <slots>
-  <signal>signal1()</signal>
-  <slot>on_changed(int)</slot>
- </slots>
+ <connections/>
 </ui>

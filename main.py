@@ -1,8 +1,7 @@
-from PySide6.QtWidgets import QApplication, QDialog, QGraphicsScene
-from PySide6.QtGui import QTextCursor, QImage, QPixmap
+from PySide6.QtWidgets import QApplication, QDialog
+from PySide6.QtGui import QTextCursor
 from lib.ui import Ui_Dialog
 
-import numpy as np
 import sys
 
 
@@ -13,25 +12,18 @@ class MainWindow(QDialog):
         self.ui.setupUi(self)
         self.logger = self.ui.textEdit.textCursor()
 
-        self.scene = QGraphicsScene()
-        self.ui.graphicsView.setScene(self.scene)
-
         # 补充连线
-        self.ui.pushButton_8.clicked.connect(self.ui.tab_17.openfile)
-        self.ui.pushButton.clicked.connect(self.ui.tab_17.savefile)
-        self.ui.pushButton_9.clicked.connect(self.ui.tab_18.openfile)
+        self.ui.tab_N1C3_RoI.init()
+        self.ui.tab_NxC1_RoI.init()
+        self.ui.pushButton_8.clicked.connect(self.ui.tab_N1C3_RoI.openfile)
+        self.ui.pushButton.clicked.connect(self.ui.tab_N1C3_RoI.savefile)
+        self.ui.pushButton_9.clicked.connect(self.ui.tab_NxC1_RoI.openfile)
 
     def printf(self, *value):
         self.logger.movePosition(QTextCursor.MoveOperation.End)
         for i in value:
             self.logger.insertText(f'{i} ')
         self.logger.insertText('\n')
-
-    def imshow(self, img: np.ndarray, form):
-        height, width, depth = img.shape
-        frame = QImage(img, width, height, width * depth * img.itemsize, form)
-        self.scene.clear()
-        self.scene.addPixmap(QPixmap.fromImage(frame))
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ import cv2
 class N1C3_RoI(MyWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.form = QImage.Format.Format_BGR888
         self.origin = np.empty(0)
         self.anchor = QPoint()
         self.d = 0
@@ -17,7 +18,7 @@ class N1C3_RoI(MyWidget):
     def on_mouse(self, action: int, pos: QPoint):
         if action == 0:
             self.anchor = pos
-        elif action == 2:
+        elif action == 1:
             d = pos - self.anchor
             self.d = max(d.x(), d.y())
             img = self.origin.copy()
@@ -28,8 +29,9 @@ class N1C3_RoI(MyWidget):
 
     def openfile(self):
         path, _ = QFileDialog().getOpenFileName()
-        self.origin = cv2.imdecode(np.fromfile(path, dtype=np.uint8), flags=cv2.IMREAD_UNCHANGED)
-        self.imshow(self.origin, form=QImage.Format.Format_BGR888)
+        if path:
+            self.origin = cv2.imdecode(np.fromfile(path, dtype=np.uint8), flags=cv2.IMREAD_UNCHANGED)
+            self.imshow(self.origin)
 
     def savefile(self):
         s1 = slice(self.anchor.y(), self.anchor.y() + self.d)

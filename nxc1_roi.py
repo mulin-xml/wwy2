@@ -11,6 +11,7 @@ import cv2
 class NxC1_RoI(MyWidget):
     def __init__(self) -> None:
         super().__init__()
+        self.form = QImage.Format.Format_Grayscale16
         self.origins = np.empty(0)
         self.origin = np.empty(0)
         self.anchor = QPoint()
@@ -20,7 +21,7 @@ class NxC1_RoI(MyWidget):
     def on_mouse(self, action: int, pos: QPoint):
         if action == 0:
             self.anchor = pos
-        elif action == 2:
+        elif action == 1:
             d = pos - self.anchor
             self.d = max(d.x(), d.y())
             self.draw()
@@ -29,9 +30,10 @@ class NxC1_RoI(MyWidget):
 
     def openfile(self):
         path, _ = QFileDialog().getOpenFileName()
-        self.origins = tifffile.imread(path)
-        self.printf(self.origins.shape)
-        self.on_pos(0)
+        if path:
+            self.origins = tifffile.imread(path)
+            self.printf(self.origins.shape)
+            self.on_pos(0)
 
     def savefile(self):
         self.cnt += 1
@@ -48,4 +50,4 @@ class NxC1_RoI(MyWidget):
     def draw(self):
         img = self.origin.copy()
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), 255, 2)
-        self.imshow(img[:, :, None], form=QImage.Format.Format_Grayscale16)
+        self.imshow(img[:, :, None])
