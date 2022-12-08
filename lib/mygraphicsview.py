@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QGraphicsView, QGraphicsScene
 from PySide6.QtGui import QMouseEvent, QWheelEvent, QImage, QPixmap
-from PySide6.QtCore import Signal, Qt, QPointF,QPoint
+from PySide6.QtCore import Signal, Qt, QPointF, QPoint
 import numpy as np
 
 
@@ -13,6 +13,8 @@ class MyGraphicsView(QGraphicsView):
         self.anchor = QPointF()
         self.sc = QGraphicsScene()
         self.setScene(self.sc)
+        self.setTransformationAnchor(QGraphicsView.ViewportAnchor.NoAnchor)
+        self.setResizeAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
         if event.button() == Qt.MouseButton.RightButton:

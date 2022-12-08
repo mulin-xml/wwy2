@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'untitled.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QPushButton,
-    QSizePolicy, QSlider, QSpacerItem, QTextEdit,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
+    QPushButton, QSizePolicy, QSlider, QSpacerItem,
+    QTextEdit, QVBoxLayout, QWidget)
 
 from lib.mygraphicsview import MyGraphicsView
 from lib.mytabwidget import MyTabWidget
@@ -48,6 +48,11 @@ class Ui_Dialog(object):
         self.tab_N1C3_RoI.setObjectName(u"tab_N1C3_RoI")
         self.verticalLayout_3 = QVBoxLayout(self.tab_N1C3_RoI)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.label = QLabel(self.tab_N1C3_RoI)
+        self.label.setObjectName(u"label")
+
+        self.verticalLayout_3.addWidget(self.label)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -87,6 +92,11 @@ class Ui_Dialog(object):
         self.tab_NxC1_RoI.setObjectName(u"tab_NxC1_RoI")
         self.verticalLayout_2 = QVBoxLayout(self.tab_NxC1_RoI)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label_2 = QLabel(self.tab_NxC1_RoI)
+        self.label_2.setObjectName(u"label_2")
+
+        self.verticalLayout_2.addWidget(self.label_2)
+
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -156,9 +166,11 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u5355\u5f20\u4e09\u901a\u9053\u56fe\u50cf\u8fdb\u884cRoI\u6846\u9009\u4ee5\u53ca\u989c\u8272\u901a\u9053\u5206\u79bb", None))
         self.pushButton_8.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_N1C3_RoI), QCoreApplication.translate("Dialog", u"N1C3 ROI", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u5355\u901a\u9053\u56fe\u50cf\u5e8f\u5217\u8fdb\u884cRoI\u6846\u9009", None))
         self.pushButton_9.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
         self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_NxC1_RoI), QCoreApplication.translate("Dialog", u"NxC1 ROI", None))
