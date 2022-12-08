@@ -117,6 +117,7 @@ class Ui_Dialog(object):
         self.horizontalSlider = QSlider(self.tab_NxC1_RoI)
         self.horizontalSlider.setObjectName(u"horizontalSlider")
         self.horizontalSlider.setOrientation(Qt.Horizontal)
+        self.horizontalSlider.setTickPosition(QSlider.TicksAbove)
 
         self.verticalLayout_2.addWidget(self.horizontalSlider)
 
@@ -140,25 +141,26 @@ class Ui_Dialog(object):
         sizePolicy2.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
         self.textEdit.setSizePolicy(sizePolicy2)
         self.textEdit.setMaximumSize(QSize(16777215, 50))
+        self.textEdit.setReadOnly(True)
 
         self.verticalLayout.addWidget(self.textEdit)
 
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
         self.pushButton_8.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_N1C3_RoI), QCoreApplication.translate("Dialog", u"N1C3 ROI", None))
         self.pushButton_9.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
-        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"PushButton", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_NxC1_RoI), QCoreApplication.translate("Dialog", u"NxC1 ROI", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Dialog", u"future", None))
     # retranslateUi

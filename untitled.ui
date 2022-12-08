@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Wen Wenyu and Her Fathers 2.0</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -148,7 +148,7 @@
          <item>
           <widget class="QPushButton" name="pushButton_2">
            <property name="text">
-            <string>PushButton</string>
+            <string>保存图片</string>
            </property>
           </widget>
          </item>
@@ -171,6 +171,9 @@
         <widget class="QSlider" name="horizontalSlider">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksAbove</enum>
          </property>
         </widget>
        </item>
@@ -199,6 +202,9 @@
        <width>16777215</width>
        <height>50</height>
       </size>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

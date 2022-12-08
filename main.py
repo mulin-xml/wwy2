@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog
 from PySide6.QtGui import QTextCursor
 from lib.ui import Ui_Dialog
-
 import sys
 
 
@@ -10,7 +9,7 @@ class MainWindow(QDialog):
         super(MainWindow, self).__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.logger = self.ui.textEdit.textCursor()
+        self.logger = self.ui.textEdit
 
         # 补充连线
         self.ui.tab_N1C3_RoI.init()
@@ -18,12 +17,14 @@ class MainWindow(QDialog):
         self.ui.pushButton_8.clicked.connect(self.ui.tab_N1C3_RoI.openfile)
         self.ui.pushButton.clicked.connect(self.ui.tab_N1C3_RoI.savefile)
         self.ui.pushButton_9.clicked.connect(self.ui.tab_NxC1_RoI.openfile)
+        self.ui.pushButton_2.clicked.connect(self.ui.tab_NxC1_RoI.savefile)
 
     def printf(self, *value):
-        self.logger.movePosition(QTextCursor.MoveOperation.End)
+        self.logger.moveCursor(QTextCursor.MoveOperation.End)
+        cursor = self.logger.textCursor()
         for i in value:
-            self.logger.insertText(f'{i} ')
-        self.logger.insertText('\n')
+            cursor.insertText(f'{i} ')
+        cursor.insertText('\n')
 
 
 if __name__ == "__main__":

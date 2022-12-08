@@ -1,8 +1,8 @@
-from PySide6.QtWidgets import QFileDialog
+from PySide6.QtWidgets import QFileDialog, QSlider
 from PySide6.QtGui import QImage
 from PySide6.QtCore import QPoint
 from lib.mywidget import MyWidget
-
+from typing import cast
 import numpy as np
 import tifffile
 import cv2
@@ -18,6 +18,11 @@ class NxC1_RoI(MyWidget):
         self.d = 0
         self.cnt = 0
 
+    def init(self):
+        self.slider = cast(QSlider, self.findChild(QSlider))
+        self.slider.valueChanged.connect(self.on_pos)
+        return super().init()
+
     def on_mouse(self, action: int, pos: QPoint):
         if action == 0:
             self.anchor = pos
@@ -27,12 +32,16 @@ class NxC1_RoI(MyWidget):
             self.draw()
         else:
             self.printf(action, pos)
+        return super().on_mouse(action, pos)
 
     def openfile(self):
         path, _ = QFileDialog().getOpenFileName()
         if path:
+            self.cnt = 0
             self.origins = tifffile.imread(path)
             self.printf(self.origins.shape)
+            self.slider.setRange(0, self.origins.shape[0] - 1)
+            self.slider.setValue(0)
             self.on_pos(0)
 
     def savefile(self):
@@ -46,6 +55,7 @@ class NxC1_RoI(MyWidget):
         img = self.origins[x]
         self.origin = cv2.normalize(img, None, 0, 65535, cv2.NORM_MINMAX)
         self.draw()
+        self.printf(x)
 
     def draw(self):
         img = self.origin.copy()

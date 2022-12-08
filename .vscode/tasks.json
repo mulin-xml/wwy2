@@ -6,13 +6,13 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "conda activate py39 ; pyinstaller main.py -F -w",
+            "command": "conda activate py39 ; pyinstaller main.py -F -w -n wwy2 ; rm *.spec",
             "problemMatcher": []
         },
         {
             "label": "uic",
             "type": "shell",
-            "command": "conda activate py39 ; pyside6-uic untitled.ui -o lib/ui.py --from-imports",
+            "command": "conda activate py39 ; pyside6-uic untitled.ui -o lib/ui.py",
             "problemMatcher": []
         },
         {
