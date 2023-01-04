@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QDialog
 from PySide6.QtGui import QTextCursor
+from PySide6.QtCore import Qt
 from lib.ui import Ui_Dialog
 import sys
 
@@ -10,6 +11,7 @@ class MainWindow(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.logger = self.ui.textEdit
+        self.setWindowFlag(Qt.WindowType.WindowMinimizeButtonHint, True)
 
         # 补充连线
         self.ui.tab_N1C3_RoI.init()

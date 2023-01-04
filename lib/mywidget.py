@@ -13,6 +13,7 @@ class MyWidget(QWidget):
     def on_mouse(self, action: int, pos: QPoint): ...
 
     def init(self):
+        self.ui = self.parent().parent().parent()
         self.gv = cast(MyGraphicsView, self.findChild(MyGraphicsView))
         self.gv.mouseSig.connect(self.on_mouse)
 
