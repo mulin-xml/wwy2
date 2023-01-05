@@ -14,8 +14,8 @@ class MainWindow(QDialog):
         self.setWindowFlag(Qt.WindowType.WindowMinimizeButtonHint, True)
 
         # 补充连线
-        self.ui.tab_N1C3_RoI.init()
-        self.ui.tab_NxC1_RoI.init()
+        self.ui.tab_N1C3_RoI.init(self.ui)
+        self.ui.tab_NxC1_RoI.init(self.ui)
         self.ui.pushButton_8.clicked.connect(self.ui.tab_N1C3_RoI.openfile)
         self.ui.pushButton.clicked.connect(self.ui.tab_N1C3_RoI.savefile)
         self.ui.pushButton_9.clicked.connect(self.ui.tab_NxC1_RoI.openfile)

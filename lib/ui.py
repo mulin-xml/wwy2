@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QSlider,
-    QSpacerItem, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
+    QLabel, QLineEdit, QPushButton, QSizePolicy,
+    QSlider, QSpacerItem, QTextEdit, QVBoxLayout,
+    QWidget)
 
 from lib.mygraphicsview import MyGraphicsView
 from lib.mytabwidget import MyTabWidget
@@ -29,7 +30,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(827, 785)
+        Dialog.resize(905, 810)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -37,6 +38,74 @@ class Ui_Dialog(object):
         Dialog.setSizePolicy(sizePolicy)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_10)
+
+        self.line_check = QCheckBox(Dialog)
+        self.line_check.setObjectName(u"line_check")
+
+        self.horizontalLayout_3.addWidget(self.line_check)
+
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_9)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_3 = QLabel(Dialog)
+        self.label_3.setObjectName(u"label_3")
+
+        self.horizontalLayout_4.addWidget(self.label_3)
+
+        self.from_edit = QLineEdit(Dialog)
+        self.from_edit.setObjectName(u"from_edit")
+        self.from_edit.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_4.addWidget(self.from_edit)
+
+        self.label_5 = QLabel(Dialog)
+        self.label_5.setObjectName(u"label_5")
+
+        self.horizontalLayout_4.addWidget(self.label_5)
+
+
+        self.horizontalLayout_3.addLayout(self.horizontalLayout_4)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_7)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_4 = QLabel(Dialog)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout_5.addWidget(self.label_4)
+
+        self.to_edit = QLineEdit(Dialog)
+        self.to_edit.setObjectName(u"to_edit")
+        self.to_edit.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_5.addWidget(self.to_edit)
+
+        self.label_6 = QLabel(Dialog)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout_5.addWidget(self.label_6)
+
+
+        self.horizontalLayout_3.addLayout(self.horizontalLayout_5)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_8)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+
         self.tabWidget = MyTabWidget(Dialog)
         self.tabWidget.setObjectName(u"tabWidget")
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -79,65 +148,6 @@ class Ui_Dialog(object):
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout)
-
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_9)
-
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_3 = QLabel(self.tab_N1C3_RoI)
-        self.label_3.setObjectName(u"label_3")
-
-        self.horizontalLayout_4.addWidget(self.label_3)
-
-        self.lineEdit = QLineEdit(self.tab_N1C3_RoI)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.horizontalLayout_4.addWidget(self.lineEdit)
-
-        self.label_5 = QLabel(self.tab_N1C3_RoI)
-        self.label_5.setObjectName(u"label_5")
-
-        self.horizontalLayout_4.addWidget(self.label_5)
-
-
-        self.horizontalLayout_3.addLayout(self.horizontalLayout_4)
-
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_7)
-
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_4 = QLabel(self.tab_N1C3_RoI)
-        self.label_4.setObjectName(u"label_4")
-
-        self.horizontalLayout_5.addWidget(self.label_4)
-
-        self.lineEdit_2 = QLineEdit(self.tab_N1C3_RoI)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        self.lineEdit_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.horizontalLayout_5.addWidget(self.lineEdit_2)
-
-        self.label_6 = QLabel(self.tab_N1C3_RoI)
-        self.label_6.setObjectName(u"label_6")
-
-        self.horizontalLayout_5.addWidget(self.label_6)
-
-
-        self.horizontalLayout_3.addLayout(self.horizontalLayout_5)
-
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_8)
-
-
-        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
         self.graphicsView = MyGraphicsView(self.tab_N1C3_RoI)
         self.graphicsView.setObjectName(u"graphicsView")
@@ -204,16 +214,12 @@ class Ui_Dialog(object):
 
         self.textEdit = QTextEdit(Dialog)
         self.textEdit.setObjectName(u"textEdit")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-        self.textEdit.setSizePolicy(sizePolicy2)
-        self.textEdit.setMaximumSize(QSize(16777215, 50))
         self.textEdit.setReadOnly(True)
 
         self.verticalLayout.addWidget(self.textEdit)
 
+        self.verticalLayout.setStretch(1, 10)
+        self.verticalLayout.setStretch(2, 1)
 
         self.retranslateUi(Dialog)
 
@@ -225,15 +231,16 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
+        self.line_check.setText(QCoreApplication.translate("Dialog", u"\u6dfb\u52a0\u6807\u5c3a", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"From", None))
+        self.from_edit.setText(QCoreApplication.translate("Dialog", u"100.0", None))
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"um", None))
+        self.label_4.setText(QCoreApplication.translate("Dialog", u"To", None))
+        self.to_edit.setText(QCoreApplication.translate("Dialog", u"5", None))
+        self.label_6.setText(QCoreApplication.translate("Dialog", u"um", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u5355\u5f20\u4e09\u901a\u9053\u56fe\u50cf\u8fdb\u884cRoI\u6846\u9009\u4ee5\u53ca\u989c\u8272\u901a\u9053\u5206\u79bb", None))
         self.pushButton_8.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"From", None))
-        self.lineEdit.setText(QCoreApplication.translate("Dialog", u"100.0", None))
-        self.label_5.setText(QCoreApplication.translate("Dialog", u"um", None))
-        self.label_4.setText(QCoreApplication.translate("Dialog", u"To", None))
-        self.lineEdit_2.setText(QCoreApplication.translate("Dialog", u"5", None))
-        self.label_6.setText(QCoreApplication.translate("Dialog", u"um", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_N1C3_RoI), QCoreApplication.translate("Dialog", u"N1C3 ROI", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u5355\u901a\u9053\u56fe\u50cf\u5e8f\u5217\u8fdb\u884cRoI\u6846\u9009", None))
         self.pushButton_9.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))

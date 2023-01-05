@@ -18,10 +18,10 @@ class NxC1_RoI(MyWidget):
         self.d = 0
         self.cnt = 0
 
-    def init(self):
+    def init(self, ui):
         self.slider = cast(QSlider, self.findChild(QSlider))
         self.slider.valueChanged.connect(self.on_pos)
-        return super().init()
+        return super().init(ui)
 
     def on_mouse(self, action: int, pos: QPoint):
         if action == 0:

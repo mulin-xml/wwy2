@@ -15,12 +15,6 @@ class N1C3_RoI(MyWidget):
         self.anchor = QPoint()
         self.d = 0
 
-    def init(self):
-        super().init()
-        print(self.ui.objectName())
-        self.from_edit = self.ui.lineEdit
-        self.to_edit = self.ui.lineEdit_2
-
     def on_mouse(self, action: int, pos: QPoint):
         if action == 0:
             self.anchor = pos
@@ -34,7 +28,6 @@ class N1C3_RoI(MyWidget):
             self.printf(action, pos)
 
     def openfile(self):
-        self.printf(self.from_edit.text(), self.to_edit.text())
         path, _ = QFileDialog().getOpenFileName()
         if path:
             self.origin = cv2.imdecode(np.fromfile(path, dtype=np.uint8), flags=cv2.IMREAD_UNCHANGED)
@@ -46,6 +39,6 @@ class N1C3_RoI(MyWidget):
         for i in range(3):
             img = np.zeros((self.d, self.d, 3))  # 保存为3通道图像
             img[:, :, i] = self.origin[s1, s2, i]
-            cv2.imwrite(f'{i}.jpg', img)
-        cv2.imwrite('3.jpg', self.origin[s1, s2])
+            self.imwrite(f'{i}.jpg', img)
+        self.imwrite('3.jpg', self.origin[s1, s2])
         self.printf(self.d, self.origin.shape)
