@@ -8,9 +8,12 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "main.py",
             "console": "integratedTerminal",
             "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+            },
         }
     ]
 }

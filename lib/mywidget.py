@@ -20,7 +20,7 @@ class MyWidget(QWidget):
     def on_mouse(self, action: int, pos: QPoint): ...
 
     def init(self, ui):
-        self.ui = ui
+        self.ui: Ui_Dialog = ui
         self.gv = cast(MyGraphicsView, self.findChild(MyGraphicsView))
         self.gv.mouseSig.connect(self.on_mouse)
 
@@ -31,6 +31,15 @@ class MyWidget(QWidget):
         self.parent().parent().parent().printf(*value)
 
     def imwrite(self, name: str, img: np.ndarray):
+        width = img.shape[1]
+        rate = 1000 / width
+        dst = cv2.resize(img, None, fx=rate, fy=rate)  # 宽度对齐1000px
+        dst_width, dst_height = dst.shape[1], dst.shape[0]
+
         if self.ui.line_check.isChecked():
-            cv2.line(img, (img.shape[1] - 20, img.shape[0] - 20), (img.shape[1] - 80, img.shape[0] - 20), [255] * 3, 3)
-        cv2.imwrite(name, img)
+            margin = 100
+            length = float(self.ui.from_edit.text())
+            cv2.line(dst, (dst_width - margin - length, dst_height - margin), (dst_width - margin, dst_height - margin), [0] * 3, 4)
+            cv2.putText(dst, f'{self.ui.to_edit.text()}um', (dst_width - margin - length, int(dst_height - margin * 1.3)), cv2.FONT_HERSHEY_DUPLEX, 1.5, [0] * 3, 2, cv2.LINE_AA)
+            cv2.imshow('1', dst)
+        cv2.imwrite(name, dst)
