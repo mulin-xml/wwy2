@@ -22,7 +22,7 @@ class N1C3_RoI(MyWidget):
             d = pos - self.anchor
             self.d = max(d.x(), d.y())
             img = self.origin.copy()
-            cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (0, 255, 0), 2)
+            cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 2)
             self.imshow(img)
         else:
             self.printf(action, pos)
@@ -30,7 +30,12 @@ class N1C3_RoI(MyWidget):
     def openfile(self):
         path, _ = QFileDialog().getOpenFileName()
         if path:
-            self.origin = cv2.imdecode(np.fromfile(path, dtype=np.uint8), flags=cv2.IMREAD_UNCHANGED)
+            self.origin: np.ndarray = cv2.imdecode(np.fromfile(path, dtype=np.uint8), flags=cv2.IMREAD_UNCHANGED)
+            if self.origin.ndim == 2:
+                self.origin = self.origin[:, :, None]
+                self.form = QImage.Format.Format_Grayscale8
+            else:
+                self.form = QImage.Format.Format_BGR888
             self.imshow(self.origin)
             self.printf(f'Src size{self.origin.shape}')
 
@@ -42,13 +47,15 @@ class N1C3_RoI(MyWidget):
 
         s1 = slice(self.anchor.y(), self.anchor.y() + self.d)
         s2 = slice(self.anchor.x(), self.anchor.x() + self.d)
-        for i in range(3):
-            img = np.zeros((self.d, self.d, 3))  # 保存为3通道图像
+        height, width, depth = self.origin.shape
+        for i in range(depth):
+            img = np.zeros((self.d, self.d, depth))
             img[:, :, i] = self.origin[s1, s2, i]
-            path = self.imwrite(f'{i}.png', img, self.origin.shape[1])
+            path = self.imwrite(f'{i}.png', img, width)
             urls.append(QUrl.fromLocalFile(path))
-        path = self.imwrite('3.png', self.origin[s1, s2], self.origin.shape[1])
-        urls.append(QUrl.fromLocalFile(path))
+        if depth > 1:
+            path = self.imwrite('fusion.png', self.origin[s1, s2], width)
+            urls.append(QUrl.fromLocalFile(path))
         mimedata.setUrls(urls)
         cb.setMimeData(mimedata)
         self.printf(f'Src size{self.origin.shape}', f'RoI width: {self.d}')

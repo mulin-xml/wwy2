@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QGraphicsView, QGraphicsScene
+from PySide6.QtWidgets import QGraphicsView, QGraphicsScene, QMessageBox
 from PySide6.QtGui import QMouseEvent, QWheelEvent, QImage, QPixmap
 from PySide6.QtCore import Signal, Qt, QPointF, QPoint
 import numpy as np
@@ -46,6 +46,9 @@ class MyGraphicsView(QGraphicsView):
         return super().wheelEvent(event)
 
     def imshow(self, img: np.ndarray, form):
+        if img.ndim != 3:
+            QMessageBox.information(self, 'Error', f'img.ndim is {img.ndim}')
+            return
         height, width, depth = img.shape
         frame = QImage(img, width, height, width * depth * img.itemsize, form)
         self.sc.clear()
