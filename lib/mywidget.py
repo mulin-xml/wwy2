@@ -40,9 +40,9 @@ class MyWidget(QWidget):
         dst_width, dst_height = dst.shape[1], dst.shape[0]
 
         if self.ui.line_check.isChecked():
-            margin = 100
+            margin = 45
             length = int(origin_width / float(self.ui.from_edit.text()) * float(self.ui.to_edit.text()) * rate)
-            cv2.line(dst, (dst_width - margin - length, dst_height - margin), (dst_width - margin, dst_height - margin), [255] * 3, 4)
-            cv2.putText(dst, f'{self.ui.to_edit.text()}um', (dst_width - margin - length, int(dst_height - margin * 1.3)), cv2.FONT_HERSHEY_DUPLEX, 1.5, [255] * 3, 2, cv2.LINE_AA)
+            cv2.line(dst, (dst_width - margin - length, dst_height - margin), (dst_width - margin, dst_height - margin), [255] * 3, 8)
+            # cv2.putText(dst, f'{self.ui.to_edit.text()}um', (dst_width - margin - length, int(dst_height - margin * 1.3)), cv2.FONT_HERSHEY_DUPLEX, 1.5, [255] * 3, 2, cv2.LINE_AA)
         cv2.imwrite(name, dst)
         return os.path.join(os.getcwd(), name)
