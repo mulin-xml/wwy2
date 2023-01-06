@@ -39,7 +39,7 @@ class NxC1_RoI(MyWidget):
         if path:
             self.cnt = 0
             self.origins = tifffile.imread(path)
-            self.printf(self.origins.shape)
+            self.printf(f'Src size{self.origins.shape}')
             self.slider.setRange(0, self.origins.shape[0] - 1)
             self.slider.setValue(0)
             self.on_pos(0)
@@ -48,7 +48,7 @@ class NxC1_RoI(MyWidget):
         self.cnt += 1
         s1 = slice(self.anchor.y(), self.anchor.y() + self.d)
         s2 = slice(self.anchor.x(), self.anchor.x() + self.d)
-        cv2.imwrite(f'{self.cnt}.jpg', self.origin[s1, s2] / 256)
+        self.imwrite(f'{self.cnt}.png', self.origin[s1, s2] / 256, self.origin.shape[1])
         self.printf(self.d, self.origin.shape)
 
     def on_pos(self, x):
