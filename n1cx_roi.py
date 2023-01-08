@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 
 
-class N1C3_RoI(MyWidget):
+class N1Cx_RoI(MyWidget):
     def __init__(self) -> None:
         super().__init__()
         self.form = QImage.Format.Format_BGR888
