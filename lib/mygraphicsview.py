@@ -45,11 +45,21 @@ class MyGraphicsView(QGraphicsView):
             self.scale(1 / 1.2, 1 / 1.2)
         return super().wheelEvent(event)
 
-    def imshow(self, img: np.ndarray, form):
-        if img.ndim != 3:
-            QMessageBox.information(self, 'Error', f'img.ndim is {img.ndim}')
+    def imshow(self, img: np.ndarray):
+        form = self.__calc_format(img)
+        if not form:
+            QMessageBox.information(self, 'Error', f'img.shape is {img.shape}, img.itemsize is {img.itemsize}.')
             return
-        height, width, depth = img.shape
-        frame = QImage(img, width, height, width * depth * img.itemsize, form)
+        h, w, c = img.shape
         self.sc.clear()
-        self.sc.addPixmap(QPixmap.fromImage(frame))
+        self.sc.addPixmap(QPixmap.fromImage(QImage(img, w, h, w * c * img.itemsize, form)))
+
+    def __calc_format(self, img: np.ndarray):
+        if img.itemsize > 1 or img.ndim != 3:
+            return
+        c = img.shape[2]
+        if c == 1:
+            return QImage.Format.Format_Grayscale8
+        elif c == 3:
+            return QImage.Format.Format_BGR888
+        return

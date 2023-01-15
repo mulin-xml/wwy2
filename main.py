@@ -1,25 +1,68 @@
-from PySide6.QtWidgets import QApplication, QDialog
+from PySide6.QtWidgets import QApplication, QDialog, QFileDialog
 from PySide6.QtGui import QTextCursor
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Slot
 from lib.ui import Ui_Dialog
+from PIL import Image
+import numpy as np
+import tifffile
+import cv2
 import sys
 
 
-class MainWindow(QDialog):
+class MainWindow(QDialog, Ui_Dialog):
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.ui = Ui_Dialog()
-        self.ui.setupUi(self)
-        self.logger = self.ui.textEdit
-        self.setWindowFlag(Qt.WindowType.WindowMinimizeButtonHint, True)
+        self.setupUi(self)
+        self.setWindowFlag(Qt.WindowType.WindowMinMaxButtonsHint, True)
+        self.imgSlider.setEnabled(False)
+        self.controlTabWidget.init_async()
 
-        # 补充连线
-        self.ui.tab_N1Cx_RoI.init(self.ui)
-        self.ui.tab_NxC1_RoI.init(self.ui)
-        self.ui.pushButton_8.clicked.connect(self.ui.tab_N1Cx_RoI.openfile)
-        self.ui.pushButton.clicked.connect(self.ui.tab_N1Cx_RoI.savefile)
-        self.ui.pushButton_9.clicked.connect(self.ui.tab_NxC1_RoI.openfile)
-        self.ui.pushButton_2.clicked.connect(self.ui.tab_NxC1_RoI.savefile)
+        self.img: np.ndarray = None
+        self.stk: np.ndarray = None
+
+        # 手动信号槽
+        self.gv.mouseSig.connect(self.controlTabWidget.on_mouse)
+
+    @Slot(int)
+    def on_imgSlider_valueChanged(self, value):
+        self.img = self.stk[value]
+        self.img_preprocess()
+        self.controlTabWidget.render_img()
+
+    @Slot(int)
+    def on_controlTabWidget_currentChanged(self, index):
+        if self.img is not None:
+            self.controlTabWidget.render_img()
+
+    @Slot()
+    def on_openImgButton_clicked(self):
+        path, _ = QFileDialog().getOpenFileName()
+        if not path:
+            self.printf('User presses cancel.')
+            return
+        path: str
+        if path.endswith('.stk'):
+            self.imgSlider.setEnabled(True)
+            self.stk = tifffile.imread(path)
+            self.imgSlider.setRange(0, self.stk.shape[0] - 1)
+            self.img = self.stk[0]
+        else:
+            self.imgSlider.setEnabled(False)
+            self.img = np.array(Image.open(path))
+        self.imgSlider.setValue(0)
+        self.img_preprocess()
+
+    def img_preprocess(self):
+        if self.img.itemsize == 2:
+            self.img = cv2.normalize(self.img, None, 0, 255, cv2.NORM_MINMAX)
+            self.img = self.img.astype(np.uint8)
+        if self.img.ndim == 2:
+            self.img = self.img[:, :, None]
+        elif self.img.ndim == 3:
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
+        else:
+            self.printf(f'Error: img.shape is {self.img.shape}.')
+        self.gv.imshow(self.img)
 
     def printf(self, *value):
         self.logger.moveCursor(QTextCursor.MoveOperation.End)
