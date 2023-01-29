@@ -4,21 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "release",
             "type": "shell",
             "command": "conda activate py39 ; pyinstaller main.py -F -w -n wwy2 ; rm *.spec",
             "problemMatcher": []
         },
         {
-            "label": "uic",
-            "type": "shell",
-            "command": "conda activate py39 ; pyside6-uic untitled.ui -o lib/ui.py",
-            "problemMatcher": []
-        },
-        {
             "label": "designer",
             "type": "shell",
-            "command": "conda activate py39 ; pyside6-designer untitled.ui",
+            "command": "conda activate py39 ; pyside6-designer",
             "problemMatcher": []
         }
     ]

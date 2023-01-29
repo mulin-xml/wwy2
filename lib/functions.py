@@ -10,7 +10,7 @@ import cv2
 import os
 
 if TYPE_CHECKING:
-    from main import MainWindow
+    from uic.main_dialog_logic import MainWindow
 
 
 class BaseFunction:
@@ -118,7 +118,7 @@ class CircleCounter(BaseFunction):
         return super().render_img()
 
     def calc(self):
-        self.printf('计算中 大约耗时10秒 请耐心等待')
+        self.printf('计算中 大约耗时几秒 请耐心等待')
         self.circles = cv2.HoughCircles(self.img.squeeze(), cv2.HOUGH_GRADIENT, 1, 40, param1=50, param2=20, minRadius=0, maxRadius=100).squeeze()
         self.printf(self.circles)
         self.render_img()

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitled.ui'
+## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.4.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -45,6 +45,15 @@ class Ui_Dialog(object):
         self.openImgButton.setObjectName(u"openImgButton")
 
         self.horizontalLayout_6.addWidget(self.openImgButton)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_13)
+
+        self.openHistButton = QPushButton(Dialog)
+        self.openHistButton.setObjectName(u"openHistButton")
+
+        self.horizontalLayout_6.addWidget(self.openHistButton)
 
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -253,6 +262,7 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
         self.openImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
+        self.openHistButton.setText(QCoreApplication.translate("Dialog", u"\u989c\u8272\u76f4\u65b9\u56fe", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u4efb\u610f\u56fe\u50cf\u8fdb\u884cRoI\u6846\u9009\u4ee5\u53ca\u901a\u9053\u5206\u79bb", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.line_check.setText(QCoreApplication.translate("Dialog", u"\u6dfb\u52a0\u6807\u5c3a", None))
