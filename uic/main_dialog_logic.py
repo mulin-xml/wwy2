@@ -7,6 +7,7 @@ from PIL import Image
 import numpy as np
 import tifffile
 import cv2
+from lib.functions import RoI
 
 
 class MainWindow(QDialog, Ui_Dialog):
@@ -14,15 +15,14 @@ class MainWindow(QDialog, Ui_Dialog):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowFlag(Qt.WindowType.WindowMinMaxButtonsHint, True)
-        self.imgSlider.setEnabled(False)
-        self.controlTabWidget.init_async()
-        self.hist = Hist()
+        self.tab1ImgSlider.setEnabled(False)
 
-        self.img: np.ndarray = None
-        self.stk: np.ndarray = None
+        self.hist = Hist()
+        self.fun1 = RoI(self)
+        self.fun1.setupUi(self)
 
         # 手动信号槽
-        self.gv.mouseSig.connect(self.controlTabWidget.on_mouse)
+        # self.tab1GV.mouseSig.connect(self.fun1.on_mouse)
 
     def closeEvent(self, arg__1) -> None:
         self.hist.close()
@@ -34,12 +34,6 @@ class MainWindow(QDialog, Ui_Dialog):
         self.img_preprocess()
         self.controlTabWidget.render_img()
 
-    @Slot(int)
-    def on_controlTabWidget_currentChanged(self, index):
-        if self.img is not None:
-            self.controlTabWidget.render_img()
-
-    @Slot()
     def on_openHistButton_clicked(self):
         self.hist.show()
         self.printf('User open hist.')

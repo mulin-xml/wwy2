@@ -35,33 +35,6 @@ class Ui_Dialog(object):
         Dialog.setSizePolicy(sizePolicy)
         self.verticalLayout_4 = QVBoxLayout(Dialog)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer)
-
-        self.openImgButton = QPushButton(Dialog)
-        self.openImgButton.setObjectName(u"openImgButton")
-
-        self.horizontalLayout_6.addWidget(self.openImgButton)
-
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_13)
-
-        self.openHistButton = QPushButton(Dialog)
-        self.openHistButton.setObjectName(u"openHistButton")
-
-        self.horizontalLayout_6.addWidget(self.openHistButton)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_4)
-
-
-        self.verticalLayout_4.addLayout(self.horizontalLayout_6)
-
         self.controlTabWidget = MyTabWidget(Dialog)
         self.controlTabWidget.setObjectName(u"controlTabWidget")
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -84,10 +57,19 @@ class Ui_Dialog(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
-        self.pushButton = QPushButton(self.tab1)
-        self.pushButton.setObjectName(u"pushButton")
+        self.tab1OpenImgButton = QPushButton(self.tab1)
+        self.tab1OpenImgButton.setObjectName(u"tab1OpenImgButton")
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.tab1OpenImgButton)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_14)
+
+        self.tab1SaveButton = QPushButton(self.tab1)
+        self.tab1SaveButton.setObjectName(u"tab1SaveButton")
+
+        self.horizontalLayout.addWidget(self.tab1SaveButton)
 
         self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -164,6 +146,20 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
 
+        self.tab1GV = MyGraphicsView(self.tab1)
+        self.tab1GV.setObjectName(u"tab1GV")
+        self.tab1GV.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.tab1GV.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        self.verticalLayout.addWidget(self.tab1GV)
+
+        self.tab1ImgSlider = QSlider(self.tab1)
+        self.tab1ImgSlider.setObjectName(u"tab1ImgSlider")
+        self.tab1ImgSlider.setOrientation(Qt.Horizontal)
+        self.tab1ImgSlider.setTickPosition(QSlider.TicksAbove)
+
+        self.verticalLayout.addWidget(self.tab1ImgSlider)
+
         self.controlTabWidget.addTab(self.tab1, "")
         self.tab2 = QWidget()
         self.tab2.setObjectName(u"tab2")
@@ -224,32 +220,13 @@ class Ui_Dialog(object):
 
         self.verticalLayout_4.addWidget(self.controlTabWidget)
 
-        self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.gv = MyGraphicsView(Dialog)
-        self.gv.setObjectName(u"gv")
-        self.gv.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.gv.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
-        self.verticalLayout_3.addWidget(self.gv)
-
-        self.imgSlider = QSlider(Dialog)
-        self.imgSlider.setObjectName(u"imgSlider")
-        self.imgSlider.setOrientation(Qt.Horizontal)
-        self.imgSlider.setTickPosition(QSlider.TicksAbove)
-
-        self.verticalLayout_3.addWidget(self.imgSlider)
-
-
-        self.verticalLayout_4.addLayout(self.verticalLayout_3)
-
         self.logger = QTextEdit(Dialog)
         self.logger.setObjectName(u"logger")
         self.logger.setReadOnly(True)
 
         self.verticalLayout_4.addWidget(self.logger)
 
-        self.verticalLayout_4.setStretch(2, 10)
+        self.verticalLayout_4.setStretch(0, 1)
 
         self.retranslateUi(Dialog)
 
@@ -261,10 +238,9 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
-        self.openImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
-        self.openHistButton.setText(QCoreApplication.translate("Dialog", u"\u989c\u8272\u76f4\u65b9\u56fe", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u4efb\u610f\u56fe\u50cf\u8fdb\u884cRoI\u6846\u9009\u4ee5\u53ca\u901a\u9053\u5206\u79bb", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
+        self.tab1OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
+        self.tab1SaveButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
         self.line_check.setText(QCoreApplication.translate("Dialog", u"\u6dfb\u52a0\u6807\u5c3a", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"From", None))
         self.from_edit.setText(QCoreApplication.translate("Dialog", u"100.0", None))

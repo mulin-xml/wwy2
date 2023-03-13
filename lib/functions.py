@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import QPoint, QMimeData, QUrl
+from PySide6.QtCore import QPoint, QMimeData, QUrl,QMetaObject,QObject,Slot
 from typing import TYPE_CHECKING
 from abc import abstractmethod
 from datetime import datetime
@@ -14,19 +14,6 @@ if TYPE_CHECKING:
 
 
 class BaseFunction:
-    def __init__(self, ui) -> None:
-        self.ui: MainWindow = ui
-
-    @property
-    def img(self) -> np.ndarray:
-        return self.ui.img
-
-    @abstractmethod
-    def on_mouse(self, action: int, pos: QPoint): ...
-
-    @abstractmethod
-    def render_img(self): ...
-
     def printf(self, *value):
         self.ui.printf(*value)
 
@@ -34,14 +21,28 @@ class BaseFunction:
         self.ui.gv.imshow(img)
 
 
-class RoI(BaseFunction):
+class RoI(QObject):
     def __init__(self, ui) -> None:
         super().__init__(ui)
         self.anchor = QPoint()
         self.d = 0
 
+        self.img: np.ndarray = None
+        self.stk: np.ndarray = None
+
+        self.gv=ui.tab1GV
+
         # 手动信号槽
-        self.ui.pushButton.clicked.connect(self.savefile)
+        # self.ui.pushButton.clicked.connect(self.savefile)
+        QMetaObject.connectSlotsByName(self)
+
+    def setupUi(self,ui):
+        self.gv=ui.tab1GV
+
+        # 手动信号槽
+        # self.ui.pushButton.clicked.connect(self.savefile)
+        QMetaObject.connectSlotsByName(self)
+
 
     def render_img(self):
         img = self.img.copy()
@@ -49,7 +50,8 @@ class RoI(BaseFunction):
         self.imshow(img)
         return super().render_img()
 
-    def on_mouse(self, action: int, pos: QPoint):
+    @Slot(int, QPoint)
+    def on_gv_mouseSig(self, action: int, pos: QPoint):
         if action == 0:
             self.anchor = pos
         elif action == 1:
