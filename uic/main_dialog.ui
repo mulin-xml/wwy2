@@ -21,7 +21,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,0">
    <item>
-    <widget class="MyTabWidget" name="controlTabWidget">
+    <widget class="QTabWidget" name="controlTabWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
        <horstretch>0</horstretch>
@@ -31,7 +31,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab1">
+     <widget class="RoI" name="tab1">
       <attribute name="title">
        <string>RoI区域框选</string>
       </attribute>
@@ -231,6 +231,9 @@
        </item>
        <item>
         <widget class="QSlider" name="tab1ImgSlider">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -356,15 +359,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MyTabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>lib/mytabwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MyGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>lib/mygraphicsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RoI</class>
+   <extends>QWidget</extends>
+   <header>lib/roi.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

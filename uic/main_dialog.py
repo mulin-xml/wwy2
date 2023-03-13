@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,11 +17,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QSlider, QSpacerItem, QTextEdit, QVBoxLayout,
-    QWidget)
+    QSlider, QSpacerItem, QTabWidget, QTextEdit,
+    QVBoxLayout, QWidget)
 
 from lib.mygraphicsview import MyGraphicsView
-from lib.mytabwidget import MyTabWidget
+from lib.roi import RoI
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -35,14 +35,14 @@ class Ui_Dialog(object):
         Dialog.setSizePolicy(sizePolicy)
         self.verticalLayout_4 = QVBoxLayout(Dialog)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.controlTabWidget = MyTabWidget(Dialog)
+        self.controlTabWidget = QTabWidget(Dialog)
         self.controlTabWidget.setObjectName(u"controlTabWidget")
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.controlTabWidget.sizePolicy().hasHeightForWidth())
         self.controlTabWidget.setSizePolicy(sizePolicy1)
-        self.tab1 = QWidget()
+        self.tab1 = RoI()
         self.tab1.setObjectName(u"tab1")
         self.verticalLayout = QVBoxLayout(self.tab1)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -155,6 +155,7 @@ class Ui_Dialog(object):
 
         self.tab1ImgSlider = QSlider(self.tab1)
         self.tab1ImgSlider.setObjectName(u"tab1ImgSlider")
+        self.tab1ImgSlider.setEnabled(False)
         self.tab1ImgSlider.setOrientation(Qt.Horizontal)
         self.tab1ImgSlider.setTickPosition(QSlider.TicksAbove)
 
