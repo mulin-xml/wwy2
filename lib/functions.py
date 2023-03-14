@@ -1,16 +1,4 @@
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import QPoint, QMimeData, QUrl, QMetaObject, QObject, Slot
-from typing import TYPE_CHECKING
-from abc import abstractmethod
-from datetime import datetime
-from PIL import Image, ImageDraw, ImageFont
-
-import numpy as np
 import cv2
-import os
-
-if TYPE_CHECKING:
-    from uic.main_dialog_logic import MainWindow
 
 
 class CircleCounter():
