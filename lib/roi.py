@@ -18,16 +18,19 @@ class RoI(QWidget):
         super().__init__()
         self.img: np.ndarray = None
         self.stk: np.ndarray = None
+
         self.anchor = QPoint()
         self.d = 0
 
     def setupUi(self, ui):
         self.ui: MainWindow = ui
         self.bg = QButtonGroup(self)
-        self.bg.idClicked.connect(self.render_img)
         for child in self.ui.tab1ChannelGroup.children():
             if child.inherits('QRadioButton'):
                 self.bg.addButton(child)
+        self.bg.idClicked.connect(self.render_img)
+        self.ui.tab1SliderMin.valueChanged.connect(self.render_img)
+        self.ui.tab1SliderMax.valueChanged.connect(self.render_img)
         QMetaObject.connectSlotsByName(self)
 
     @Slot()
@@ -126,6 +129,7 @@ class RoI(QWidget):
             img = np.zeros(self.img.shape, dtype=np.uint8)
             c = self.bg.checkedId() + 5
             img[:, :, c] = self.img[:, :, c]
+        img = cv2.normalize(img, None, self.ui.tab1SliderMin.value(), self.ui.tab1SliderMax.value(), cv2.NORM_MINMAX)
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 4)
         self.ui.tab1GV.imshow(img)
 

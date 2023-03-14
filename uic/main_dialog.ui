@@ -226,28 +226,28 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QRadioButton" name="tab1RadioAll">
+           <widget class="QRadioButton" name="radioButton">
             <property name="text">
              <string>All</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="tab1RadioRed">
+           <widget class="QRadioButton" name="radioButton_4">
             <property name="text">
              <string>Red</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="tab1RadioGreen">
+           <widget class="QRadioButton" name="radioButton_3">
             <property name="text">
              <string>Green</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="tab1RadioBlue">
+           <widget class="QRadioButton" name="radioButton_2">
             <property name="text">
              <string>Blue</string>
             </property>
@@ -326,12 +326,15 @@
                  <string>Min</string>
                 </property>
                 <property name="buddy">
-                 <cstring>horizontalSlider</cstring>
+                 <cstring>tab1SliderMin</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider">
+               <widget class="QSlider" name="tab1SliderMin">
+                <property name="maximum">
+                 <number>255</number>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -353,12 +356,18 @@
                  <string>Max</string>
                 </property>
                 <property name="buddy">
-                 <cstring>horizontalSlider_2</cstring>
+                 <cstring>tab1SliderMax</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSlider" name="horizontalSlider_2">
+               <widget class="QSlider" name="tab1SliderMax">
+                <property name="maximum">
+                 <number>255</number>
+                </property>
+                <property name="value">
+                 <number>255</number>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>

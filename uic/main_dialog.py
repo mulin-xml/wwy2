@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -150,25 +150,25 @@ class Ui_Dialog(object):
         self.tab1ChannelGroup.setObjectName(u"tab1ChannelGroup")
         self.horizontalLayout_6 = QHBoxLayout(self.tab1ChannelGroup)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.tab1RadioAll = QRadioButton(self.tab1ChannelGroup)
-        self.tab1RadioAll.setObjectName(u"tab1RadioAll")
+        self.radioButton = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton.setObjectName(u"radioButton")
 
-        self.horizontalLayout_6.addWidget(self.tab1RadioAll)
+        self.horizontalLayout_6.addWidget(self.radioButton)
 
-        self.tab1RadioRed = QRadioButton(self.tab1ChannelGroup)
-        self.tab1RadioRed.setObjectName(u"tab1RadioRed")
+        self.radioButton_4 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_4.setObjectName(u"radioButton_4")
 
-        self.horizontalLayout_6.addWidget(self.tab1RadioRed)
+        self.horizontalLayout_6.addWidget(self.radioButton_4)
 
-        self.tab1RadioGreen = QRadioButton(self.tab1ChannelGroup)
-        self.tab1RadioGreen.setObjectName(u"tab1RadioGreen")
+        self.radioButton_3 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_3.setObjectName(u"radioButton_3")
 
-        self.horizontalLayout_6.addWidget(self.tab1RadioGreen)
+        self.horizontalLayout_6.addWidget(self.radioButton_3)
 
-        self.tab1RadioBlue = QRadioButton(self.tab1ChannelGroup)
-        self.tab1RadioBlue.setObjectName(u"tab1RadioBlue")
+        self.radioButton_2 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_2.setObjectName(u"radioButton_2")
 
-        self.horizontalLayout_6.addWidget(self.tab1RadioBlue)
+        self.horizontalLayout_6.addWidget(self.radioButton_2)
 
 
         self.verticalLayout_3.addWidget(self.tab1ChannelGroup)
@@ -210,11 +210,12 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_8.addWidget(self.label_8)
 
-        self.horizontalSlider = QSlider(self.groupBox_2)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setOrientation(Qt.Horizontal)
+        self.tab1SliderMin = QSlider(self.groupBox_2)
+        self.tab1SliderMin.setObjectName(u"tab1SliderMin")
+        self.tab1SliderMin.setMaximum(255)
+        self.tab1SliderMin.setOrientation(Qt.Horizontal)
 
-        self.horizontalLayout_8.addWidget(self.horizontalSlider)
+        self.horizontalLayout_8.addWidget(self.tab1SliderMin)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_8)
@@ -227,11 +228,13 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_9.addWidget(self.label_9)
 
-        self.horizontalSlider_2 = QSlider(self.groupBox_2)
-        self.horizontalSlider_2.setObjectName(u"horizontalSlider_2")
-        self.horizontalSlider_2.setOrientation(Qt.Horizontal)
+        self.tab1SliderMax = QSlider(self.groupBox_2)
+        self.tab1SliderMax.setObjectName(u"tab1SliderMax")
+        self.tab1SliderMax.setMaximum(255)
+        self.tab1SliderMax.setValue(255)
+        self.tab1SliderMax.setOrientation(Qt.Horizontal)
 
-        self.horizontalLayout_9.addWidget(self.horizontalSlider_2)
+        self.horizontalLayout_9.addWidget(self.tab1SliderMax)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_9)
@@ -353,8 +356,8 @@ class Ui_Dialog(object):
 
         self.verticalLayout_4.setStretch(0, 1)
 #if QT_CONFIG(shortcut)
-        self.label_8.setBuddy(self.horizontalSlider)
-        self.label_9.setBuddy(self.horizontalSlider_2)
+        self.label_8.setBuddy(self.tab1SliderMin)
+        self.label_9.setBuddy(self.tab1SliderMax)
         self.label_10.setBuddy(self.horizontalSlider_3)
         self.label_14.setBuddy(self.horizontalSlider_7)
 #endif // QT_CONFIG(shortcut)
@@ -380,10 +383,10 @@ class Ui_Dialog(object):
         self.to_edit.setText(QCoreApplication.translate("Dialog", u"5", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"um", None))
         self.tab1ChannelGroup.setTitle(QCoreApplication.translate("Dialog", u"\u989c\u8272\u901a\u9053", None))
-        self.tab1RadioAll.setText(QCoreApplication.translate("Dialog", u"All", None))
-        self.tab1RadioRed.setText(QCoreApplication.translate("Dialog", u"Red", None))
-        self.tab1RadioGreen.setText(QCoreApplication.translate("Dialog", u"Green", None))
-        self.tab1RadioBlue.setText(QCoreApplication.translate("Dialog", u"Blue", None))
+        self.radioButton.setText(QCoreApplication.translate("Dialog", u"All", None))
+        self.radioButton_4.setText(QCoreApplication.translate("Dialog", u"Red", None))
+        self.radioButton_3.setText(QCoreApplication.translate("Dialog", u"Green", None))
+        self.radioButton_2.setText(QCoreApplication.translate("Dialog", u"Blue", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"B/C", None))
         self.label_15.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
         self.label_8.setText(QCoreApplication.translate("Dialog", u"Min", None))
