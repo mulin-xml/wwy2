@@ -48,7 +48,7 @@ class MyGraphicsView(QGraphicsView):
     def imshow(self, img: np.ndarray):
         form = self.__calc_format(img)
         if not form:
-            QMessageBox.information(self, 'Error', f'img.shape is {img.shape}, img.itemsize is {img.itemsize}.')
+            QMessageBox.information(self, 'Error', f'Cannot calc format, img.shape is {img.shape}, img.itemsize is {img.itemsize}.')
             return
         h, w, c = img.shape
         self.sc.clear()
