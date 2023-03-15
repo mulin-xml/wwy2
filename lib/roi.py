@@ -13,6 +13,12 @@ if TYPE_CHECKING:
     from uic.main_dialog_logic import MainWindow
 
 
+class ColorPara:
+    def __init__(self) -> None:
+        self.min = 0
+        self.max = 255
+
+
 class RoI(QWidget):
     def __init__(self) -> None:
         super().__init__()
@@ -22,45 +28,48 @@ class RoI(QWidget):
         self.anchor = QPoint()
         self.d = 0
 
+        self.c_para = [ColorPara(), ColorPara(), ColorPara(), ColorPara()]
+
     def setupUi(self, ui):
         self.ui: MainWindow = ui
-        self.bg = QButtonGroup(self)
+
+        self.colorChannel = QButtonGroup(self)
         for child in self.ui.tab1ChannelGroup.children():
             if child.inherits('QRadioButton'):
-                self.bg.addButton(child)
-        self.bg.idClicked.connect(self.render_img)
-        self.ui.tab1SliderMin.valueChanged.connect(self.render_img)
-        self.ui.tab1SliderMax.valueChanged.connect(self.render_img)
+                self.colorChannel.addButton(child)
+        self.colorChannel.idClicked.connect(self.when_radio_clicked)
+
+        self.colorPara = QButtonGroup(self)
+        for child in self.ui.tab1ParaGroup.children():
+            if child.inherits('QRadioButton'):
+                self.colorPara.addButton(child)
+        self.colorPara.idClicked.connect(self.when_radio_clicked)
+
         QMetaObject.connectSlotsByName(self)
 
-    @Slot()
-    def on_tab1OpenImgButton_clicked(self):
-        path, _ = QFileDialog().getOpenFileName()
-        if not path:
-            self.ui.printf('User presses cancel.')
-            return
-        path: str
-        # Read image file.
-        if path.endswith('.stk'):
-            self.ui.tab1ImgSlider.setEnabled(True)
-            self.stk = tifffile.imread(path)
-            self.ui.tab1ImgSlider.setRange(0, self.stk.shape[0] - 1)
-            img = self.stk[0]
-        else:
-            self.ui.tab1ImgSlider.setEnabled(False)
-            img = np.array(Image.open(path))
+    def when_radio_clicked(self):
+        self.ui.tab1BCBar.setDisabled(self.colorChannel.checkedId() >= -2 and self.colorPara.checkedId() == -3)
+        self.ui.tab1SliderMin.setValue(self.c_para[self.current_para_id].min)
+        self.ui.tab1SliderMax.setValue(self.c_para[self.current_para_id].max)
+        self.render_img()
 
-        self.img = img
+    @Slot(int)
+    def on_tab1SliderMin_valueChanged(self, value):
+        self.c_para[self.current_para_id].min = value
+        self.render_img()
 
-        # if self.bg.checkedId() >= -2:
-        #     # Select all channel.
-        #     pass
-        # else:
-        #     # Select single channel.
-        #     pass
+    @Slot(int)
+    def on_tab1SliderMax_valueChanged(self, value):
+        self.c_para[self.current_para_id].max = value
+        self.render_img()
 
-        self.ui.tab1ImgSlider.setValue(0)
-        self.img_preprocess()
+    @property
+    def selected_channel(self):
+        return self.colorChannel.checkedId() + 5
+
+    @property
+    def current_para_id(self):
+        return 3 if self.colorPara.checkedId() == -2 else self.selected_channel
 
     @Slot()
     def on_tab1SaveButton_clicked(self):
@@ -83,15 +92,8 @@ class RoI(QWidget):
         cb.setMimeData(mimedata)
         self.ui.printf(f'Src size{self.img.shape}', f'RoI width: {self.d}')
 
-    @Slot(int)
-    def on_tab1ImgSlider_valueChanged(self, value):
-        self.img = self.stk[value]
-        self.img_preprocess()
-
     @Slot(int, QPoint)
     def on_tab1GV_mouseSig(self, action: int, pos: QPoint):
-        if self.img is None:
-            return
         if action == 0:
             self.anchor = pos
         elif action == 1:
@@ -101,35 +103,80 @@ class RoI(QWidget):
         else:
             self.ui.printf(action, pos)
 
-    def img_preprocess(self):
+    @Slot()
+    def on_tab1OpenImgButton_clicked(self):
+        path, _ = QFileDialog().getOpenFileName()
+        path: str
+        if not path:
+            self.ui.printf('User presses cancel.')
+            return
+        # Read image file.
+        if path.endswith('.stk'):
+            self.ui.tab1ImgSlider.setEnabled(True)
+            self.stk = tifffile.imread(path)
+            self.ui.tab1ImgSlider.setRange(0, self.stk.shape[0] - 1)
+            img = self.stk[0]
+        else:
+            self.ui.tab1ImgSlider.setEnabled(False)
+            img = np.array(Image.open(path))
+
+        self.img_preprocess(img)
+        self.ui.tab1ImgSlider.setValue(0)
+
+    @Slot(int)
+    def on_tab1ImgSlider_valueChanged(self, value):
+        self.img_preprocess(self.stk[value], is_same_stack=True)
+
+    def img_preprocess(self, img: np.ndarray, is_same_stack=False):
         '''
         目标图像切换时的预处理
+        ---
+        在重新选择图片和滚动条变化时触发
         '''
-        if self.img.itemsize == 2:
+        if img.itemsize == 2:
             # 16位图像转8位
-            self.img = cv2.normalize(self.img, None, 0, 255, cv2.NORM_MINMAX)
-            self.img = self.img.astype(np.uint8)
-        if self.img.ndim == 2:  # 单通道图像
-            self.ui.printf('single')
-            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
-        elif self.img.ndim == 3:  # 3通道图像
-            self.ui.printf('all')
-            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
+            img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
+            img = img.astype(np.uint8)
+
+        if is_same_stack or self.colorChannel.checkedId() >= -2:
+            # Select multi channel.
+            self.ui.printf('multi')
+            self.img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         else:
-            self.ui.printf(f'Error: img.shape is {self.img.shape}.')
+            # Select single channel.
+            if img.ndim == 2:  # 单通道图像
+                self.ui.printf('single')
+                self.img[:, :, self.selected_channel] = img
+            elif self.img.ndim == 3:  # 3通道图像
+                self.ui.printf('当前通道不支持插入多通道图像')
+                return
+            else:
+                self.ui.printf(f'Error: img.shape is {self.img.shape}.')
+                return
         self.render_img()
 
     def render_img(self):
         '''
         渲染图像
+        ---
+        在目标图像切换、选区变化、对比度和选择通道变化时触发
+        按照新值重新渲染通道、对比度和选区
         '''
-        if self.bg.checkedId() >= -2:
-            img = self.img.copy()
+        if self.img is None:
+            return
+
+        if self.colorChannel.checkedId() >= -2:
+            if self.colorPara.checkedId() == -2:
+                img = cv2.normalize(self.img, None, self.c_para[3].min, self.c_para[3].max, cv2.NORM_MINMAX)
+            else:
+                img = np.empty(self.img.shape, dtype=np.uint8)
+                for i in range(3):
+                    img[:, :, i] = cv2.normalize(self.img[:, :, i], None, self.c_para[i].min, self.c_para[i].max, cv2.NORM_MINMAX)
         else:
             img = np.zeros(self.img.shape, dtype=np.uint8)
-            c = self.bg.checkedId() + 5
-            img[:, :, c] = self.img[:, :, c]
-        img = cv2.normalize(img, None, self.ui.tab1SliderMin.value(), self.ui.tab1SliderMax.value(), cv2.NORM_MINMAX)
+            img[:, :, self.selected_channel] = cv2.normalize(self.img[:, :, self.selected_channel], None, self.c_para[self.current_para_id].min,
+                                                             self.c_para[self.current_para_id].max, cv2.NORM_MINMAX)
+
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 4)
         self.ui.tab1GV.imshow(img)
 

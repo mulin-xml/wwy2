@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.4.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,7 +27,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(965, 930)
+        Dialog.resize(1126, 1034)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -152,6 +152,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.radioButton = QRadioButton(self.tab1ChannelGroup)
         self.radioButton.setObjectName(u"radioButton")
+        self.radioButton.setChecked(True)
 
         self.horizontalLayout_6.addWidget(self.radioButton)
 
@@ -190,27 +191,49 @@ class Ui_Dialog(object):
         sizePolicy2.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
         self.groupBox_2.setSizePolicy(sizePolicy2)
         self.groupBox_2.setMinimumSize(QSize(200, 0))
-        self.verticalLayout = QVBoxLayout(self.groupBox_2)
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout_7 = QVBoxLayout(self.groupBox_2)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.label_15 = QLabel(self.groupBox_2)
         self.label_15.setObjectName(u"label_15")
         self.label_15.setMinimumSize(QSize(0, 200))
 
-        self.verticalLayout.addWidget(self.label_15)
+        self.verticalLayout_7.addWidget(self.label_15)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout.addItem(self.verticalSpacer)
+        self.verticalLayout_7.addItem(self.verticalSpacer)
 
+        self.tab1ParaGroup = QGroupBox(self.groupBox_2)
+        self.tab1ParaGroup.setObjectName(u"tab1ParaGroup")
+        self.verticalLayout = QVBoxLayout(self.tab1ParaGroup)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.radioButton_5 = QRadioButton(self.tab1ParaGroup)
+        self.radioButton_5.setObjectName(u"radioButton_5")
+        self.radioButton_5.setChecked(True)
+
+        self.verticalLayout.addWidget(self.radioButton_5)
+
+        self.radioButton_6 = QRadioButton(self.tab1ParaGroup)
+        self.radioButton_6.setObjectName(u"radioButton_6")
+
+        self.verticalLayout.addWidget(self.radioButton_6)
+
+
+        self.verticalLayout_7.addWidget(self.tab1ParaGroup)
+
+        self.tab1BCBar = QGroupBox(self.groupBox_2)
+        self.tab1BCBar.setObjectName(u"tab1BCBar")
+        self.verticalLayout_6 = QVBoxLayout(self.tab1BCBar)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.label_8 = QLabel(self.groupBox_2)
+        self.label_8 = QLabel(self.tab1BCBar)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setMinimumSize(QSize(50, 0))
 
         self.horizontalLayout_8.addWidget(self.label_8)
 
-        self.tab1SliderMin = QSlider(self.groupBox_2)
+        self.tab1SliderMin = QSlider(self.tab1BCBar)
         self.tab1SliderMin.setObjectName(u"tab1SliderMin")
         self.tab1SliderMin.setMaximum(255)
         self.tab1SliderMin.setOrientation(Qt.Horizontal)
@@ -218,17 +241,17 @@ class Ui_Dialog(object):
         self.horizontalLayout_8.addWidget(self.tab1SliderMin)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_8)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_8)
 
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.label_9 = QLabel(self.groupBox_2)
+        self.label_9 = QLabel(self.tab1BCBar)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setMinimumSize(QSize(50, 0))
 
         self.horizontalLayout_9.addWidget(self.label_9)
 
-        self.tab1SliderMax = QSlider(self.groupBox_2)
+        self.tab1SliderMax = QSlider(self.tab1BCBar)
         self.tab1SliderMax.setObjectName(u"tab1SliderMax")
         self.tab1SliderMax.setMaximum(255)
         self.tab1SliderMax.setValue(255)
@@ -237,41 +260,44 @@ class Ui_Dialog(object):
         self.horizontalLayout_9.addWidget(self.tab1SliderMax)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_9)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_9)
 
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.label_10 = QLabel(self.groupBox_2)
+        self.label_10 = QLabel(self.tab1BCBar)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setMinimumSize(QSize(50, 0))
 
         self.horizontalLayout_10.addWidget(self.label_10)
 
-        self.horizontalSlider_3 = QSlider(self.groupBox_2)
+        self.horizontalSlider_3 = QSlider(self.tab1BCBar)
         self.horizontalSlider_3.setObjectName(u"horizontalSlider_3")
         self.horizontalSlider_3.setOrientation(Qt.Horizontal)
 
         self.horizontalLayout_10.addWidget(self.horizontalSlider_3)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_10)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_10)
 
         self.horizontalLayout_14 = QHBoxLayout()
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.label_14 = QLabel(self.groupBox_2)
+        self.label_14 = QLabel(self.tab1BCBar)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setMinimumSize(QSize(50, 0))
 
         self.horizontalLayout_14.addWidget(self.label_14)
 
-        self.horizontalSlider_7 = QSlider(self.groupBox_2)
+        self.horizontalSlider_7 = QSlider(self.tab1BCBar)
         self.horizontalSlider_7.setObjectName(u"horizontalSlider_7")
         self.horizontalSlider_7.setOrientation(Qt.Horizontal)
 
         self.horizontalLayout_14.addWidget(self.horizontalSlider_7)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout_14)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_14)
+
+
+        self.verticalLayout_7.addWidget(self.tab1BCBar)
 
 
         self.horizontalLayout_15.addWidget(self.groupBox_2)
@@ -389,6 +415,10 @@ class Ui_Dialog(object):
         self.radioButton_2.setText(QCoreApplication.translate("Dialog", u"Blue", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"B/C", None))
         self.label_15.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
+        self.tab1ParaGroup.setTitle(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6\u53c2\u6570", None))
+        self.radioButton_5.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u5171\u4eab\u53c2\u6570", None))
+        self.radioButton_6.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u72ec\u7acb\u53c2\u6570", None))
+        self.tab1BCBar.setTitle(QCoreApplication.translate("Dialog", u"GroupBox", None))
         self.label_8.setText(QCoreApplication.translate("Dialog", u"Min", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Max", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Bright", None))
