@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QButtonGroup
 from PySide6.QtCore import QPoint, QMimeData, QUrl, QMetaObject, Slot
+from PySide6.QtGui import QImage, QPixmap
 from PIL import Image, ImageDraw, ImageFont
 from typing import TYPE_CHECKING
 from datetime import datetime
@@ -49,18 +50,18 @@ class RoI(QWidget):
 
     def when_radio_clicked(self):
         self.ui.tab1BCBar.setDisabled(self.colorChannel.checkedId() >= -2 and self.colorPara.checkedId() == -3)
-        self.ui.tab1SliderMin.setValue(self.c_para[self.current_para_id].min)
-        self.ui.tab1SliderMax.setValue(self.c_para[self.current_para_id].max)
+        self.ui.tab1SliderMin.setValue(self.current_para.min)
+        self.ui.tab1SliderMax.setValue(self.current_para.max)
         self.render_img()
 
     @Slot(int)
     def on_tab1SliderMin_valueChanged(self, value):
-        self.c_para[self.current_para_id].min = value
+        self.current_para.min = value
         self.render_img()
 
     @Slot(int)
     def on_tab1SliderMax_valueChanged(self, value):
-        self.c_para[self.current_para_id].max = value
+        self.current_para.max = value
         self.render_img()
 
     @property
@@ -68,8 +69,8 @@ class RoI(QWidget):
         return self.colorChannel.checkedId() + 5
 
     @property
-    def current_para_id(self):
-        return 3 if self.colorPara.checkedId() == -2 else self.selected_channel
+    def current_para(self):
+        return self.c_para[3] if self.colorPara.checkedId() == -2 else self.c_para[self.selected_channel]
 
     @Slot()
     def on_tab1SaveButton_clicked(self):
@@ -115,13 +116,12 @@ class RoI(QWidget):
             self.ui.tab1ImgSlider.setEnabled(True)
             self.stk = tifffile.imread(path)
             self.ui.tab1ImgSlider.setRange(0, self.stk.shape[0] - 1)
+            self.ui.tab1ImgSlider.setValue(0)
             img = self.stk[0]
         else:
             self.ui.tab1ImgSlider.setEnabled(False)
             img = np.array(Image.open(path))
-
         self.img_preprocess(img)
-        self.ui.tab1ImgSlider.setValue(0)
 
     @Slot(int)
     def on_tab1ImgSlider_valueChanged(self, value):
@@ -155,6 +155,13 @@ class RoI(QWidget):
                 return
         self.render_img()
 
+    def build_hist(self, img: np.ndarray) -> np.ndarray:
+        freq, _ = np.histogram(img.ravel(), bins=256, range=(0, 256), density=True)
+        hist = np.ones((256, 256), dtype=np.uint8) * 255
+        for i in range(256):
+            hist[:int(freq[i] / freq.max() * 256), i] = 0
+        return hist
+
     def render_img(self):
         '''
         渲染图像
@@ -174,11 +181,15 @@ class RoI(QWidget):
                     img[:, :, i] = cv2.normalize(self.img[:, :, i], None, self.c_para[i].min, self.c_para[i].max, cv2.NORM_MINMAX)
         else:
             img = np.zeros(self.img.shape, dtype=np.uint8)
-            img[:, :, self.selected_channel] = cv2.normalize(self.img[:, :, self.selected_channel], None, self.c_para[self.current_para_id].min,
-                                                             self.c_para[self.current_para_id].max, cv2.NORM_MINMAX)
+            img[:, :, self.selected_channel] = cv2.normalize(self.img[:, :, self.selected_channel], None, self.current_para.min,
+                                                             self.current_para.max, cv2.NORM_MINMAX)
 
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 4)
         self.ui.tab1GV.imshow(img)
+
+        hist = self.build_hist(self.img)
+        h, w = hist.shape
+        self.ui.tab1Hist.setPixmap(QPixmap.fromImage(QImage(hist, w, h, QImage.Format.Format_Grayscale8)))
 
     def __imwrite(self, img: np.ndarray, origin_width=None) -> QUrl:
         width = img.shape[1]

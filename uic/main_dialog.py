@@ -193,11 +193,11 @@ class Ui_Dialog(object):
         self.groupBox_2.setMinimumSize(QSize(200, 0))
         self.verticalLayout_7 = QVBoxLayout(self.groupBox_2)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.label_15 = QLabel(self.groupBox_2)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(0, 200))
+        self.tab1Hist = QLabel(self.groupBox_2)
+        self.tab1Hist.setObjectName(u"tab1Hist")
+        self.tab1Hist.setMinimumSize(QSize(0, 200))
 
-        self.verticalLayout_7.addWidget(self.label_15)
+        self.verticalLayout_7.addWidget(self.tab1Hist)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -414,7 +414,7 @@ class Ui_Dialog(object):
         self.radioButton_3.setText(QCoreApplication.translate("Dialog", u"Green", None))
         self.radioButton_2.setText(QCoreApplication.translate("Dialog", u"Blue", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"B/C", None))
-        self.label_15.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
+        self.tab1Hist.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
         self.tab1ParaGroup.setTitle(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6\u53c2\u6570", None))
         self.radioButton_5.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u5171\u4eab\u53c2\u6570", None))
         self.radioButton_6.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u72ec\u7acb\u53c2\u6570", None))
