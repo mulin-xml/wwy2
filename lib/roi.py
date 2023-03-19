@@ -144,22 +144,24 @@ class RoI(QWidget):
             self.img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         else:
             # Select single channel.
-            if img.ndim == 2:  # 单通道图像
+            if img.ndim == 2:  # 插入的是单通道图像
                 self.ui.printf('single')
+                if self.img is None or self.img.shape[:2] != img.shape:
+                    self.img = np.zeros((img.shape[0], img.shape[1], 3))
                 self.img[:, :, self.selected_channel] = img
-            elif self.img.ndim == 3:  # 3通道图像
+            elif img.ndim == 3:  # 插入的是多通道图像
                 self.ui.printf('当前通道不支持插入多通道图像')
                 return
-            else:
-                self.ui.printf(f'Error: img.shape is {self.img.shape}.')
+            else:  # 异常路径
+                self.ui.printf(f'Error: img.shape is {img.shape}.')
                 return
         self.render_img()
 
     def build_hist(self, img: np.ndarray) -> np.ndarray:
-        freq, _ = np.histogram(img.ravel(), bins=256, range=(0, 256), density=True)
-        hist = np.ones((256, 256), dtype=np.uint8) * 255
+        freq, _ = np.histogram(img.ravel(), bins=256, range=(0, 256))
+        hist = np.zeros((256, 256, 3), dtype=np.uint8)
         for i in range(256):
-            hist[:int(freq[i] / freq.max() * 256), i] = 0
+            hist[255 - int(freq[i] / freq.max() * 255):, i, :] = 255
         return hist
 
     def render_img(self):
@@ -174,6 +176,7 @@ class RoI(QWidget):
 
         if self.colorChannel.checkedId() >= -2:
             if self.colorPara.checkedId() == -2:
+                hist = self.build_hist(img)
                 img = cv2.normalize(self.img, None, self.c_para[3].min, self.c_para[3].max, cv2.NORM_MINMAX)
             else:
                 img = np.empty(self.img.shape, dtype=np.uint8)
@@ -181,15 +184,15 @@ class RoI(QWidget):
                     img[:, :, i] = cv2.normalize(self.img[:, :, i], None, self.c_para[i].min, self.c_para[i].max, cv2.NORM_MINMAX)
         else:
             img = np.zeros(self.img.shape, dtype=np.uint8)
+            hist = self.build_hist(img)
             img[:, :, self.selected_channel] = cv2.normalize(self.img[:, :, self.selected_channel], None, self.current_para.min,
                                                              self.current_para.max, cv2.NORM_MINMAX)
 
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 4)
         self.ui.tab1GV.imshow(img)
 
-        hist = self.build_hist(self.img)
         h, w = hist.shape
-        self.ui.tab1Hist.setPixmap(QPixmap.fromImage(QImage(hist, w, h, QImage.Format.Format_Grayscale8)))
+        self.ui.tab1Hist.setPixmap(QPixmap.fromImage(QImage(hist, w, h, w * 3, QImage.Format.Format_BGR888)))
 
     def __imwrite(self, img: np.ndarray, origin_width=None) -> QUrl:
         width = img.shape[1]
