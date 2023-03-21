@@ -90,7 +90,7 @@ class RoI(QWidget):
             urls.append(self.__imwrite(self.img[s1, s2], w))
         if self.ui.tab1SaveEachCheckBox.isChecked():
             for i in range(c):
-                img = np.zeros((self.d, self.d, c))
+                img = np.zeros((self.d, self.d, c), dtype=np.uint8)
                 img[:, :, i] = self.img[s1, s2, i]
                 urls.append(self.__imwrite(img, w))
 
@@ -154,7 +154,7 @@ class RoI(QWidget):
             if img.ndim == 2:  # 插入的是单通道图像
                 if self.img is None or self.img.shape[:2] != img.shape:
                     self.ui.printf('重新创建图层以适应新图像大小')
-                    self.img = np.zeros((img.shape[0], img.shape[1], 3))
+                    self.img = np.zeros((img.shape[0], img.shape[1], 3), dtype=np.uint8)
                 self.img[:, :, self.selected_channel] = img
             elif img.ndim == 3:  # 插入的是多通道图像
                 self.ui.printf('当前通道不支持插入多通道图像')
