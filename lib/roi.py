@@ -51,6 +51,7 @@ class RoI(QWidget):
         self.colorPara.idClicked.connect(self.when_radio_clicked)
 
         QMetaObject.connectSlotsByName(self)
+        self.show_hist()
 
     def when_radio_clicked(self):
         self.ui.tab1BCBar.setDisabled(self.colorChannel.checkedId() >= -2 and self.colorPara.checkedId() == -3)
@@ -97,6 +98,7 @@ class RoI(QWidget):
         mimedata.setUrls(urls)
         cb.setMimeData(mimedata)
         self.ui.printf(f'Src size{self.img.shape}', f'RoI width: {self.d}')
+        self.ui.printf('图像已复制到剪切板')
 
     @Slot(int, QPoint)
     def on_tab1GV_mouseSig(self, action: int, pos: QPoint):
@@ -214,7 +216,7 @@ class RoI(QWidget):
             margin = 45
             fontsize = 50
             length = int(origin_width / float(self.ui.from_edit.text()) * float(self.ui.to_edit.text()) * rate)
-            cv2.line(dst, (dst_width - margin - length, dst_height - margin), (dst_width - margin, dst_height - margin), [255] * 3, 8)
+            cv2.line(dst, (dst_width - margin - length, dst_height - margin), (dst_width - margin, dst_height - margin), [255] * 3, 10)
             tmp_img = Image.fromarray(np.uint8(dst))
             ImageDraw.Draw(tmp_img).text(
                 xy=(dst_width - margin - length // 2, int(dst_height - margin * 1.3)),

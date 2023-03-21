@@ -27,7 +27,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(1115, 1206)
+        Dialog.resize(1077, 673)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -37,11 +37,6 @@ class Ui_Dialog(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.controlTabWidget = QTabWidget(Dialog)
         self.controlTabWidget.setObjectName(u"controlTabWidget")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.controlTabWidget.sizePolicy().hasHeightForWidth())
-        self.controlTabWidget.setSizePolicy(sizePolicy1)
         self.tab1 = RoI()
         self.tab1.setObjectName(u"tab1")
         self.verticalLayout_7 = QVBoxLayout(self.tab1)
@@ -50,52 +45,6 @@ class Ui_Dialog(object):
         self.label.setObjectName(u"label")
 
         self.verticalLayout_7.addWidget(self.label)
-
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_2)
-
-        self.tab1OpenImgButton = QPushButton(self.tab1)
-        self.tab1OpenImgButton.setObjectName(u"tab1OpenImgButton")
-
-        self.horizontalLayout.addWidget(self.tab1OpenImgButton)
-
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer_14)
-
-
-        self.verticalLayout_7.addLayout(self.horizontalLayout)
-
-        self.tab1ChannelGroup = QGroupBox(self.tab1)
-        self.tab1ChannelGroup.setObjectName(u"tab1ChannelGroup")
-        self.horizontalLayout_6 = QHBoxLayout(self.tab1ChannelGroup)
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.radioButton = QRadioButton(self.tab1ChannelGroup)
-        self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setChecked(True)
-
-        self.horizontalLayout_6.addWidget(self.radioButton)
-
-        self.radioButton_4 = QRadioButton(self.tab1ChannelGroup)
-        self.radioButton_4.setObjectName(u"radioButton_4")
-
-        self.horizontalLayout_6.addWidget(self.radioButton_4)
-
-        self.radioButton_3 = QRadioButton(self.tab1ChannelGroup)
-        self.radioButton_3.setObjectName(u"radioButton_3")
-
-        self.horizontalLayout_6.addWidget(self.radioButton_3)
-
-        self.radioButton_2 = QRadioButton(self.tab1ChannelGroup)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-
-        self.horizontalLayout_6.addWidget(self.radioButton_2)
-
-
-        self.verticalLayout_7.addWidget(self.tab1ChannelGroup)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -108,28 +57,37 @@ class Ui_Dialog(object):
 
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_5)
+
+        self.tab1OpenImgButton = QPushButton(self.tab1)
+        self.tab1OpenImgButton.setObjectName(u"tab1OpenImgButton")
+
+        self.horizontalLayout.addWidget(self.tab1OpenImgButton)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+        self.tab1SaveButton = QPushButton(self.tab1)
+        self.tab1SaveButton.setObjectName(u"tab1SaveButton")
+
+        self.horizontalLayout.addWidget(self.tab1SaveButton)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer_14)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout)
+
         self.groupBox = QGroupBox(self.tab1)
         self.groupBox.setObjectName(u"groupBox")
         self.verticalLayout_10 = QVBoxLayout(self.groupBox)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.horizontalLayout_11 = QHBoxLayout()
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_11.addItem(self.horizontalSpacer_4)
-
-        self.tab1SaveButton = QPushButton(self.groupBox)
-        self.tab1SaveButton.setObjectName(u"tab1SaveButton")
-
-        self.horizontalLayout_11.addWidget(self.tab1SaveButton)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_11.addItem(self.horizontalSpacer)
-
-
-        self.verticalLayout_10.addLayout(self.horizontalLayout_11)
-
         self.tab1AddLineCheck = QGroupBox(self.groupBox)
         self.tab1AddLineCheck.setObjectName(u"tab1AddLineCheck")
         self.tab1AddLineCheck.setCheckable(True)
@@ -197,9 +155,40 @@ class Ui_Dialog(object):
 
         self.verticalLayout_3.addWidget(self.groupBox)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.tab1ChannelGroup = QGroupBox(self.tab1)
+        self.tab1ChannelGroup.setObjectName(u"tab1ChannelGroup")
+        self.verticalLayout_11 = QVBoxLayout(self.tab1ChannelGroup)
+        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
+        self.radioButton = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton.setObjectName(u"radioButton")
+        self.radioButton.setChecked(True)
+
+        self.verticalLayout_11.addWidget(self.radioButton)
+
+        self.radioButton_4 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_4.setObjectName(u"radioButton_4")
+
+        self.verticalLayout_11.addWidget(self.radioButton_4)
+
+        self.radioButton_3 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_3.setObjectName(u"radioButton_3")
+
+        self.verticalLayout_11.addWidget(self.radioButton_3)
+
+        self.radioButton_2 = QRadioButton(self.tab1ChannelGroup)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+
+        self.verticalLayout_11.addWidget(self.radioButton_2)
+
+
+        self.verticalLayout_3.addWidget(self.tab1ChannelGroup)
+
+        self.verticalSpacer = QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
+
+
+        self.horizontalLayout_3.addLayout(self.verticalLayout_3)
 
         self.groupBox_2 = QGroupBox(self.tab1)
         self.groupBox_2.setObjectName(u"groupBox_2")
@@ -207,7 +196,6 @@ class Ui_Dialog(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.tab1Hist = QLabel(self.groupBox_2)
         self.tab1Hist.setObjectName(u"tab1Hist")
-        self.tab1Hist.setMinimumSize(QSize(0, 256))
 
         self.verticalLayout_9.addWidget(self.tab1Hist)
 
@@ -308,12 +296,11 @@ class Ui_Dialog(object):
         self.verticalLayout_9.addWidget(self.tab1BCBar)
 
 
-        self.verticalLayout_3.addWidget(self.groupBox_2)
+        self.horizontalLayout_3.addWidget(self.groupBox_2)
 
-
-        self.horizontalLayout_3.addLayout(self.verticalLayout_3)
-
-        self.horizontalLayout_3.setStretch(0, 1)
+        self.horizontalLayout_3.setStretch(0, 100)
+        self.horizontalLayout_3.setStretch(1, 1)
+        self.horizontalLayout_3.setStretch(2, 1)
 
         self.verticalLayout_7.addLayout(self.horizontalLayout_3)
 
@@ -391,7 +378,8 @@ class Ui_Dialog(object):
 
         self.verticalLayout_4.addWidget(self.logger)
 
-        self.verticalLayout_4.setStretch(0, 1)
+        self.verticalLayout_4.setStretch(0, 10)
+        self.verticalLayout_4.setStretch(1, 1)
 #if QT_CONFIG(shortcut)
         self.label_8.setBuddy(self.tab1SliderMin)
         self.label_9.setBuddy(self.tab1SliderMax)
@@ -411,13 +399,8 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Wen Wenyu and Her Fathers 2.0", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u4efb\u610f\u56fe\u50cf\u8fdb\u884cRoI\u6846\u9009\u4ee5\u53ca\u901a\u9053\u5206\u79bb", None))
         self.tab1OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
-        self.tab1ChannelGroup.setTitle(QCoreApplication.translate("Dialog", u"\u989c\u8272\u901a\u9053", None))
-        self.radioButton.setText(QCoreApplication.translate("Dialog", u"All", None))
-        self.radioButton_4.setText(QCoreApplication.translate("Dialog", u"Red", None))
-        self.radioButton_3.setText(QCoreApplication.translate("Dialog", u"Green", None))
-        self.radioButton_2.setText(QCoreApplication.translate("Dialog", u"Blue", None))
-        self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u9009\u9879", None))
         self.tab1SaveButton.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u56fe\u7247", None))
+        self.groupBox.setTitle(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58\u9009\u9879", None))
         self.tab1AddLineCheck.setTitle(QCoreApplication.translate("Dialog", u"\u6dfb\u52a0\u6807\u5c3a", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"From", None))
         self.from_edit.setText(QCoreApplication.translate("Dialog", u"100.0", None))
@@ -427,12 +410,17 @@ class Ui_Dialog(object):
         self.label_6.setText(QCoreApplication.translate("Dialog", u"um", None))
         self.tab1SaveAllCheckBox.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58ROI\u5168\u901a\u9053", None))
         self.tab1SaveEachCheckBox.setText(QCoreApplication.translate("Dialog", u"\u4fdd\u5b58ROI\u5404\u901a\u9053", None))
+        self.tab1ChannelGroup.setTitle(QCoreApplication.translate("Dialog", u"\u989c\u8272\u901a\u9053", None))
+        self.radioButton.setText(QCoreApplication.translate("Dialog", u"All", None))
+        self.radioButton_4.setText(QCoreApplication.translate("Dialog", u"Red", None))
+        self.radioButton_3.setText(QCoreApplication.translate("Dialog", u"Green", None))
+        self.radioButton_2.setText(QCoreApplication.translate("Dialog", u"Blue", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"B/C", None))
         self.tab1Hist.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
         self.tab1ParaGroup.setTitle(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6\u53c2\u6570", None))
         self.radioButton_5.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u5171\u4eab\u53c2\u6570", None))
         self.radioButton_6.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u72ec\u7acb\u53c2\u6570", None))
-        self.tab1BCBar.setTitle(QCoreApplication.translate("Dialog", u"GroupBox", None))
+        self.tab1BCBar.setTitle(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6\u63a7\u5236\u6761", None))
         self.label_8.setText(QCoreApplication.translate("Dialog", u"Min", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Max", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Bright", None))
