@@ -19,8 +19,9 @@ class ColorPara:
         self.min = 0
         self.max = 255
 
-    def fit(self, img):
-        return cv2.normalize(img, None, self.min, self.max, cv2.NORM_MINMAX)
+    def fit(self, img: np.ndarray):
+        # return cv2.normalize(img, None, self.min, self.max, cv2.NORM_MINMAX)
+        return cv2.convertScaleAbs(img, None, (self.max - self.min) / 255, self.min)
 
 
 class RoI(QWidget):
