@@ -221,43 +221,6 @@ class Ui_Dialog(object):
         self.tab1BCBar.setObjectName(u"tab1BCBar")
         self.verticalLayout_6 = QVBoxLayout(self.tab1BCBar)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.horizontalLayout_8 = QHBoxLayout()
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.label_8 = QLabel(self.tab1BCBar)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setMinimumSize(QSize(50, 0))
-
-        self.horizontalLayout_8.addWidget(self.label_8)
-
-        self.tab1SliderMin = QSlider(self.tab1BCBar)
-        self.tab1SliderMin.setObjectName(u"tab1SliderMin")
-        self.tab1SliderMin.setMaximum(255)
-        self.tab1SliderMin.setOrientation(Qt.Horizontal)
-
-        self.horizontalLayout_8.addWidget(self.tab1SliderMin)
-
-
-        self.verticalLayout_6.addLayout(self.horizontalLayout_8)
-
-        self.horizontalLayout_9 = QHBoxLayout()
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.label_9 = QLabel(self.tab1BCBar)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setMinimumSize(QSize(50, 0))
-
-        self.horizontalLayout_9.addWidget(self.label_9)
-
-        self.tab1SliderMax = QSlider(self.tab1BCBar)
-        self.tab1SliderMax.setObjectName(u"tab1SliderMax")
-        self.tab1SliderMax.setMaximum(255)
-        self.tab1SliderMax.setValue(255)
-        self.tab1SliderMax.setOrientation(Qt.Horizontal)
-
-        self.horizontalLayout_9.addWidget(self.tab1SliderMax)
-
-
-        self.verticalLayout_6.addLayout(self.horizontalLayout_9)
-
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.label_10 = QLabel(self.tab1BCBar)
@@ -266,11 +229,13 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_10.addWidget(self.label_10)
 
-        self.horizontalSlider_3 = QSlider(self.tab1BCBar)
-        self.horizontalSlider_3.setObjectName(u"horizontalSlider_3")
-        self.horizontalSlider_3.setOrientation(Qt.Horizontal)
+        self.tab1SliderBeta = QSlider(self.tab1BCBar)
+        self.tab1SliderBeta.setObjectName(u"tab1SliderBeta")
+        self.tab1SliderBeta.setMinimum(-255)
+        self.tab1SliderBeta.setMaximum(255)
+        self.tab1SliderBeta.setOrientation(Qt.Horizontal)
 
-        self.horizontalLayout_10.addWidget(self.horizontalSlider_3)
+        self.horizontalLayout_10.addWidget(self.tab1SliderBeta)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_10)
@@ -283,17 +248,23 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_14.addWidget(self.label_14)
 
-        self.horizontalSlider_7 = QSlider(self.tab1BCBar)
-        self.horizontalSlider_7.setObjectName(u"horizontalSlider_7")
-        self.horizontalSlider_7.setOrientation(Qt.Horizontal)
+        self.tab1SliderAlpha = QSlider(self.tab1BCBar)
+        self.tab1SliderAlpha.setObjectName(u"tab1SliderAlpha")
+        self.tab1SliderAlpha.setMaximum(200)
+        self.tab1SliderAlpha.setValue(100)
+        self.tab1SliderAlpha.setOrientation(Qt.Horizontal)
 
-        self.horizontalLayout_14.addWidget(self.horizontalSlider_7)
+        self.horizontalLayout_14.addWidget(self.tab1SliderAlpha)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_14)
 
 
         self.verticalLayout_9.addWidget(self.tab1BCBar)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_9.addItem(self.verticalSpacer_2)
 
 
         self.horizontalLayout_3.addWidget(self.groupBox_2)
@@ -381,10 +352,8 @@ class Ui_Dialog(object):
         self.verticalLayout_4.setStretch(0, 10)
         self.verticalLayout_4.setStretch(1, 1)
 #if QT_CONFIG(shortcut)
-        self.label_8.setBuddy(self.tab1SliderMin)
-        self.label_9.setBuddy(self.tab1SliderMax)
-        self.label_10.setBuddy(self.horizontalSlider_3)
-        self.label_14.setBuddy(self.horizontalSlider_7)
+        self.label_10.setBuddy(self.tab1SliderBeta)
+        self.label_14.setBuddy(self.tab1SliderAlpha)
 #endif // QT_CONFIG(shortcut)
 
         self.retranslateUi(Dialog)
@@ -421,8 +390,6 @@ class Ui_Dialog(object):
         self.radioButton_5.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u5171\u4eab\u53c2\u6570", None))
         self.radioButton_6.setText(QCoreApplication.translate("Dialog", u"\u5404\u901a\u9053\u72ec\u7acb\u53c2\u6570", None))
         self.tab1BCBar.setTitle(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6\u63a7\u5236\u6761", None))
-        self.label_8.setText(QCoreApplication.translate("Dialog", u"Min", None))
-        self.label_9.setText(QCoreApplication.translate("Dialog", u"Max", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Bright", None))
         self.label_14.setText(QCoreApplication.translate("Dialog", u"Contrast", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab1), QCoreApplication.translate("Dialog", u"RoI\u533a\u57df\u6846\u9009", None))

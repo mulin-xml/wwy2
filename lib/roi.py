@@ -16,12 +16,16 @@ if TYPE_CHECKING:
 
 class ColorPara:
     def __init__(self) -> None:
-        self.min = 0
-        self.max = 255
+        self.alpha = 1.0
+        self.beta = 0
 
     def fit(self, img: np.ndarray):
         # return cv2.normalize(img, None, self.min, self.max, cv2.NORM_MINMAX)
-        return cv2.convertScaleAbs(img, None, (self.max - self.min) / 255, self.min)
+        # return cv2.convertScaleAbs(img, None, self.alpha, self.beta)
+        x = img * self.alpha + self.beta
+        x[x > 255] = 255
+        x[x < 0] = 0
+        return x.astype(np.uint8)
 
 
 class RoI(QWidget):
@@ -56,18 +60,18 @@ class RoI(QWidget):
 
     def when_radio_clicked(self):
         self.ui.tab1BCBar.setDisabled(self.colorChannel.checkedId() >= -2 and self.colorPara.checkedId() == -3)
-        self.ui.tab1SliderMin.setValue(self.current_para.min)
-        self.ui.tab1SliderMax.setValue(self.current_para.max)
+        self.ui.tab1SliderAlpha.setValue(self.current_para.alpha * 100)
+        self.ui.tab1SliderBeta.setValue(self.current_para.beta)
         self.render_img()
 
     @Slot(int)
-    def on_tab1SliderMin_valueChanged(self, value):
-        self.current_para.min = value
+    def on_tab1SliderAlpha_valueChanged(self, value):
+        self.current_para.alpha = value / 100
         self.render_img()
 
     @Slot(int)
-    def on_tab1SliderMax_valueChanged(self, value):
-        self.current_para.max = value
+    def on_tab1SliderBeta_valueChanged(self, value):
+        self.current_para.beta = value
         self.render_img()
 
     @property
@@ -201,8 +205,8 @@ class RoI(QWidget):
     def show_hist(self):
         h, w, c = self.hist.shape
         hist = self.hist.copy()
-        cv2.line(hist, (self.current_para.min, 0), (self.current_para.min, 255), [255, 255, 0], 2)
-        cv2.line(hist, (self.current_para.max, 0), (self.current_para.max, 255), [0, 255, 255], 2)
+        # cv2.line(hist, (self.current_para.min, 0), (self.current_para.min, 255), [255, 255, 0], 2)
+        # cv2.line(hist, (self.current_para.max, 0), (self.current_para.max, 255), [0, 255, 255], 2)
         self.ui.tab1Hist.setPixmap(QPixmap.fromImage(QImage(hist, w, h, w * c, QImage.Format.Format_BGR888)))
 
     def __imwrite(self, img: np.ndarray, origin_width=None) -> QUrl:
