@@ -11,6 +11,7 @@ class MainWindow(QDialog, Ui_Dialog):
         self.setupUi(self)
         self.setWindowFlag(Qt.WindowType.WindowMinMaxButtonsHint, True)
         self.tab1.setupUi(self)
+        self.tab2.setupUi(self)
 
     def printf(self, *value):
         self.logger.moveCursor(QTextCursor.MoveOperation.End)

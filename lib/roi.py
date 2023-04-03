@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QApplication, QWidget, QFileDialog, QButtonGroup
 from PySide6.QtCore import QPoint, QMimeData, QUrl, QMetaObject, Slot
 from PIL import Image, ImageDraw, ImageFont
-from PySide6.QtGui import QImage, QPixmap
 from typing import TYPE_CHECKING
 from datetime import datetime
 
@@ -23,9 +22,7 @@ class ColorPara:
         # return cv2.normalize(img, None, self.min, self.max, cv2.NORM_MINMAX)
         # return cv2.convertScaleAbs(img, None, self.alpha, self.beta)
         x = img * self.alpha + self.beta
-        x[x > 255] = 255
-        x[x < 0] = 0
-        return x.astype(np.uint8)
+        return x.clip(0, 255).astype(np.uint8)
 
 
 class RoI(QWidget):
@@ -33,7 +30,6 @@ class RoI(QWidget):
         super().__init__()
         self.img: np.ndarray = None
         self.stk: np.ndarray = None
-        self.hist = np.zeros((256, 256, 3), dtype=np.uint8)
 
         self.anchor = QPoint()
         self.d = 0
@@ -54,9 +50,7 @@ class RoI(QWidget):
             if child.inherits('QRadioButton'):
                 self.colorPara.addButton(child)
         self.colorPara.idClicked.connect(self.when_radio_clicked)
-
         QMetaObject.connectSlotsByName(self)
-        self.show_hist()
 
     def when_radio_clicked(self):
         self.ui.tab1BCBar.setDisabled(self.colorChannel.checkedId() >= -2 and self.colorPara.checkedId() == -3)
@@ -90,19 +84,20 @@ class RoI(QWidget):
 
         s1 = slice(self.anchor.y(), self.anchor.y() + self.d)
         s2 = slice(self.anchor.x(), self.anchor.x() + self.d)
-        _, w, c = self.img.shape
+        fit_img = self.get_fit_img()
+        _, w, c = fit_img.shape
         if self.ui.tab1SaveAllCheckBox.isChecked():
-            urls.append(self.__imwrite(self.img[s1, s2], w))
+            urls.append(self.__imwrite(fit_img[s1, s2], w))
         if self.ui.tab1SaveEachCheckBox.isChecked():
             for i in range(c):
                 img = np.zeros((self.d, self.d, c), dtype=np.uint8)
-                img[:, :, i] = self.img[s1, s2, i]
+                img[:, :, i] = fit_img[s1, s2, i]
                 urls.append(self.__imwrite(img, w))
 
         mimedata = QMimeData()
         mimedata.setUrls(urls)
         cb.setMimeData(mimedata)
-        self.ui.printf(f'Src size{self.img.shape}', f'RoI width: {self.d}')
+        self.ui.printf(f'Src size{fit_img.shape}', f'RoI width: {self.d}')
         self.ui.printf('图像已复制到剪切板')
 
     @Slot(int, QPoint)
@@ -168,23 +163,11 @@ class RoI(QWidget):
                 self.ui.printf(f'Error: img.shape is {img.shape}.')
                 return
 
-        self.hist *= 0
-        for i in range(3):
-            freq, _ = np.histogram(self.img[:, :, i].ravel(), bins=256, range=(0, 256))
-            for j in range(256):
-                self.hist[255 - int(freq[j] / freq.max() * 255):, j, i] = 255
         self.render_img()
 
-    def render_img(self):
-        '''
-        渲染图像
-        ---
-        在目标图像切换、选区变化、对比度和选择通道变化时触发
-        按照新值重新渲染通道、对比度和选区
-        '''
+    def get_fit_img(self) -> np.ndarray:
         if self.img is None:
-            return
-
+            return None
         if self.colorChannel.checkedId() >= -2:
             # 当前显示全通道
             if self.colorPara.checkedId() == -2:
@@ -197,17 +180,21 @@ class RoI(QWidget):
             # 当前显示单通道
             img = np.zeros(self.img.shape, dtype=np.uint8)
             img[:, :, self.selected_channel] = self.current_para.fit(self.img[:, :, self.selected_channel])
+        return img
 
+    def render_img(self):
+        '''
+        渲染图像
+        ---
+        在目标图像切换、选区变化、对比度和选择通道变化时触发
+        按照新值重新渲染通道、对比度和选区
+        '''
+        if self.img is None:
+            return
+
+        img = self.get_fit_img()
         cv2.rectangle(img, self.anchor.toTuple(), (self.anchor.x() + self.d, self.anchor.y() + self.d), (255, 255, 0), 4)
         self.ui.tab1GV.imshow(img)
-        self.show_hist()
-
-    def show_hist(self):
-        h, w, c = self.hist.shape
-        hist = self.hist.copy()
-        # cv2.line(hist, (self.current_para.min, 0), (self.current_para.min, 255), [255, 255, 0], 2)
-        # cv2.line(hist, (self.current_para.max, 0), (self.current_para.max, 255), [0, 255, 255], 2)
-        self.ui.tab1Hist.setPixmap(QPixmap.fromImage(QImage(hist, w, h, w * c, QImage.Format.Format_BGR888)))
 
     def __imwrite(self, img: np.ndarray, origin_width=None) -> QUrl:
         width = img.shape[1]
