@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -299,6 +299,15 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_2.addWidget(self.tab2OpenImgButton)
 
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.tab2CntButton = QPushButton(self.tab2)
+        self.tab2CntButton.setObjectName(u"tab2CntButton")
+
+        self.horizontalLayout_2.addWidget(self.tab2CntButton)
+
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_3)
@@ -311,6 +320,12 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.tab2Hist)
 
+        self.tab2Slider = QSlider(self.tab2)
+        self.tab2Slider.setObjectName(u"tab2Slider")
+        self.tab2Slider.setOrientation(Qt.Horizontal)
+
+        self.verticalLayout.addWidget(self.tab2Slider)
+
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
@@ -319,6 +334,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_9.addLayout(self.verticalLayout)
 
         self.horizontalLayout_9.setStretch(0, 10)
+        self.horizontalLayout_9.setStretch(1, 1)
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_9)
 
@@ -369,7 +385,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.controlTabWidget.setCurrentIndex(0)
+        self.controlTabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -403,7 +419,8 @@ class Ui_Dialog(object):
         self.label_14.setText(QCoreApplication.translate("Dialog", u"Contrast", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab1), QCoreApplication.translate("Dialog", u"RoI\u533a\u57df\u6846\u9009", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u56fe\u50cf\u8fdb\u884c\u970d\u592b\u5706\u8ba1\u6570", None))
-        self.tab2OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
+        self.tab2OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
+        self.tab2CntButton.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
         self.tab2Hist.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab2), QCoreApplication.translate("Dialog", u"\u970d\u592b\u5706\u8ba1\u6570", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u80f6\u56fe\u8fdb\u884c\u9762\u79ef\u8ba1\u7b97", None))

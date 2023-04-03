@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="controlTabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="RoI" name="tab1">
       <attribute name="title">
@@ -403,7 +403,7 @@
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="10,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="10,1">
          <item>
           <widget class="MyGraphicsView" name="tab2GV">
            <property name="verticalScrollBarPolicy">
@@ -434,6 +434,26 @@
              <item>
               <widget class="QPushButton" name="tab2OpenImgButton">
                <property name="text">
+                <string>打开图片</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="tab2CntButton">
+               <property name="text">
                 <string>开始计数</string>
                </property>
               </widget>
@@ -457,6 +477,13 @@
             <widget class="QLabel" name="tab2Hist">
              <property name="text">
               <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="tab2Slider">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>

@@ -34,7 +34,8 @@ class CircleCounter(QWidget):
             return
         # Read image file.
         img = np.array(Image.open(path))
-        self.img = img if img.ndim == 2 else cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        self.img = img if img.ndim == 2 else cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # shape(H, W)
+        self.ui.printf(self.img.shape)
 
         self.hist *= 0
         freq, _ = np.histogram(self.img[:, :].ravel(), bins=256, range=(0, 256))
@@ -52,7 +53,7 @@ class CircleCounter(QWidget):
         if self.img is None:
             return
 
-        self.ui.tab1GV.imshow(img)
+        self.ui.tab2GV.imshow(self.img[:, :, None])
         self.show_hist()
 
     def show_hist(self):
