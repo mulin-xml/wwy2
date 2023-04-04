@@ -392,18 +392,18 @@
      </widget>
      <widget class="CircleCounter" name="tab2">
       <attribute name="title">
-       <string>霍夫圆计数</string>
+       <string>连通域计数</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>用于对图像进行霍夫圆计数</string>
+          <string>采用形态学方法对图像进行连通域计数</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="10,1">
+        <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="10,1">
          <item>
           <widget class="MyGraphicsView" name="tab2GV">
            <property name="verticalScrollBarPolicy">
@@ -481,9 +481,70 @@
             </widget>
            </item>
            <item>
-            <widget class="QSlider" name="tab2Slider">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>亮度阈值</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="tab2BrightThres">
+               <property name="maximum">
+                <number>255</number>
+               </property>
+               <property name="value">
+                <number>128</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>面积阈值</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="tab2AreaThres">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>50</number>
+               </property>
+               <property name="value">
+                <number>10</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition">
+                <enum>QSlider::NoTicks</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>说明：
+- 高于亮度阈值的点才会被统计
+- 调低亮度阈值有助于选出低亮度的漏检点
+- 低于面积阈值的点会被剔除
+- 调低面积阈值有助于选出特别小的点</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::MarkdownText</enum>
              </property>
             </widget>
            </item>

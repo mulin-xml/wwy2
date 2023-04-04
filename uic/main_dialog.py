@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.4.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -277,14 +277,14 @@ class Ui_Dialog(object):
 
         self.verticalLayout_2.addWidget(self.label_2)
 
-        self.horizontalLayout_9 = QHBoxLayout()
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_12 = QHBoxLayout()
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.tab2GV = MyGraphicsView(self.tab2)
         self.tab2GV.setObjectName(u"tab2GV")
         self.tab2GV.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.tab2GV.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        self.horizontalLayout_9.addWidget(self.tab2GV)
+        self.horizontalLayout_12.addWidget(self.tab2GV)
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -320,23 +320,61 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.tab2Hist)
 
-        self.tab2Slider = QSlider(self.tab2)
-        self.tab2Slider.setObjectName(u"tab2Slider")
-        self.tab2Slider.setOrientation(Qt.Horizontal)
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.label_8 = QLabel(self.tab2)
+        self.label_8.setObjectName(u"label_8")
 
-        self.verticalLayout.addWidget(self.tab2Slider)
+        self.horizontalLayout_9.addWidget(self.label_8)
+
+        self.tab2BrightThres = QSlider(self.tab2)
+        self.tab2BrightThres.setObjectName(u"tab2BrightThres")
+        self.tab2BrightThres.setMaximum(255)
+        self.tab2BrightThres.setValue(128)
+        self.tab2BrightThres.setOrientation(Qt.Horizontal)
+
+        self.horizontalLayout_9.addWidget(self.tab2BrightThres)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_9)
+
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.label_9 = QLabel(self.tab2)
+        self.label_9.setObjectName(u"label_9")
+
+        self.horizontalLayout_11.addWidget(self.label_9)
+
+        self.tab2AreaThres = QSlider(self.tab2)
+        self.tab2AreaThres.setObjectName(u"tab2AreaThres")
+        self.tab2AreaThres.setMinimum(1)
+        self.tab2AreaThres.setMaximum(50)
+        self.tab2AreaThres.setValue(10)
+        self.tab2AreaThres.setOrientation(Qt.Horizontal)
+        self.tab2AreaThres.setTickPosition(QSlider.NoTicks)
+
+        self.horizontalLayout_11.addWidget(self.tab2AreaThres)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_11)
+
+        self.label_11 = QLabel(self.tab2)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setTextFormat(Qt.MarkdownText)
+
+        self.verticalLayout.addWidget(self.label_11)
 
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
 
 
-        self.horizontalLayout_9.addLayout(self.verticalLayout)
+        self.horizontalLayout_12.addLayout(self.verticalLayout)
 
-        self.horizontalLayout_9.setStretch(0, 10)
-        self.horizontalLayout_9.setStretch(1, 1)
+        self.horizontalLayout_12.setStretch(0, 10)
+        self.horizontalLayout_12.setStretch(1, 1)
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout_9)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_12)
 
         self.controlTabWidget.addTab(self.tab2, "")
         self.tab3 = QWidget()
@@ -418,11 +456,18 @@ class Ui_Dialog(object):
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Bright", None))
         self.label_14.setText(QCoreApplication.translate("Dialog", u"Contrast", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab1), QCoreApplication.translate("Dialog", u"RoI\u533a\u57df\u6846\u9009", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u56fe\u50cf\u8fdb\u884c\u970d\u592b\u5706\u8ba1\u6570", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"\u91c7\u7528\u5f62\u6001\u5b66\u65b9\u6cd5\u5bf9\u56fe\u50cf\u8fdb\u884c\u8fde\u901a\u57df\u8ba1\u6570", None))
         self.tab2OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
         self.tab2CntButton.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
         self.tab2Hist.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
-        self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab2), QCoreApplication.translate("Dialog", u"\u970d\u592b\u5706\u8ba1\u6570", None))
+        self.label_8.setText(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6\u9608\u503c", None))
+        self.label_9.setText(QCoreApplication.translate("Dialog", u"\u9762\u79ef\u9608\u503c", None))
+        self.label_11.setText(QCoreApplication.translate("Dialog", u"\u8bf4\u660e\uff1a\n"
+"- \u9ad8\u4e8e\u4eae\u5ea6\u9608\u503c\u7684\u70b9\u624d\u4f1a\u88ab\u7edf\u8ba1\n"
+"- \u8c03\u4f4e\u4eae\u5ea6\u9608\u503c\u6709\u52a9\u4e8e\u9009\u51fa\u4f4e\u4eae\u5ea6\u7684\u6f0f\u68c0\u70b9\n"
+"- \u4f4e\u4e8e\u9762\u79ef\u9608\u503c\u7684\u70b9\u4f1a\u88ab\u5254\u9664\n"
+"- \u8c03\u4f4e\u9762\u79ef\u9608\u503c\u6709\u52a9\u4e8e\u9009\u51fa\u7279\u522b\u5c0f\u7684\u70b9", None))
+        self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab2), QCoreApplication.translate("Dialog", u"\u8fde\u901a\u57df\u8ba1\u6570", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u80f6\u56fe\u8fdb\u884c\u9762\u79ef\u8ba1\u7b97", None))
         self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab3), QCoreApplication.translate("Dialog", u"\u80f6\u56fe\u7b97\u7070\u5ea6", None))
