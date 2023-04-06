@@ -17,6 +17,7 @@ class CircleCounter(QWidget):
         super().__init__()
         self.img: np.ndarray = None
         self.hist = np.zeros((256, 256, 3), dtype=np.uint8)
+        self.rs: np.ndarray = None
 
     def setupUi(self, ui):
         self.ui: MainWindow = ui
@@ -67,7 +68,13 @@ class CircleCounter(QWidget):
             rs.append(r2)
         self.ui.tab2GV.imshow(img3)
         rs = np.array(rs)
-        self.ui.printf(f'num: {rs.size}, min: {rs.min():.2f}, max: {rs.max():.2f}, mean: {rs.mean():.2f}, mid: {np.percentile(rs, 50):.2f}')
+        self.rs = rs
+        self.ui.tab2Num.setText(f'{rs.size}')
+        self.ui.tab2Min.setText(f'{rs.min():.2f}')
+        self.ui.tab2Max.setText(f'{rs.max():.2f}')
+        self.ui.tab2Mean.setText(f'{rs.mean():.2f}')
+        self.ui.tab2Mid.setText(f'{np.percentile(rs, 50):.2f}')
+        # self.ui.printf(f'num: {rs.size}, min: {rs.min():.2f}, max: {rs.max():.2f}, mean: {rs.mean():.2f}, mid: {np.percentile(rs, 50):.2f}')
 
     def show_hist(self):
         h, w, c = self.hist.shape
@@ -82,5 +89,12 @@ class CircleCounter(QWidget):
         self.render_img()
 
     @Slot()
-    def on_tab2CntButton_clicked(self):
-        pass
+    def on_tab2ExportButton_clicked(self):
+        if self.rs is None:
+            self.ui.printf('还没有结果')
+            return
+        path, _ = QFileDialog().getSaveFileName(dir='rs.txt')
+        if not path:
+            self.ui.printf('User presses cancel.')
+        else:
+            np.savetxt(path, self.rs, fmt='%.3f')

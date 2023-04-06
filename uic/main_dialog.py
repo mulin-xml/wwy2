@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QGroupBox,
-    QHBoxLayout, QLabel, QLineEdit, QPushButton,
-    QRadioButton, QSizePolicy, QSlider, QSpacerItem,
-    QTabWidget, QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QGridLayout,
+    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QRadioButton, QSizePolicy, QSlider,
+    QSpacerItem, QTabWidget, QTextEdit, QVBoxLayout,
+    QWidget)
 
 from lib.circlecounter import CircleCounter
 from lib.mygraphicsview import MyGraphicsView
@@ -303,15 +304,6 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
-        self.tab2CntButton = QPushButton(self.tab2)
-        self.tab2CntButton.setObjectName(u"tab2CntButton")
-
-        self.horizontalLayout_2.addWidget(self.tab2CntButton)
-
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_3)
-
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
@@ -348,7 +340,7 @@ class Ui_Dialog(object):
         self.tab2AreaThres = QSlider(self.tab2)
         self.tab2AreaThres.setObjectName(u"tab2AreaThres")
         self.tab2AreaThres.setMinimum(1)
-        self.tab2AreaThres.setMaximum(50)
+        self.tab2AreaThres.setMaximum(80)
         self.tab2AreaThres.setValue(10)
         self.tab2AreaThres.setOrientation(Qt.Horizontal)
         self.tab2AreaThres.setTickPosition(QSlider.NoTicks)
@@ -357,6 +349,103 @@ class Ui_Dialog(object):
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_11)
+
+        self.groupBox_2 = QGroupBox(self.tab2)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.gridLayout = QGridLayout(self.groupBox_2)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.horizontalLayout_17 = QHBoxLayout()
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.label_16 = QLabel(self.groupBox_2)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setMinimumSize(QSize(50, 0))
+
+        self.horizontalLayout_17.addWidget(self.label_16)
+
+        self.tab2Mean = QLineEdit(self.groupBox_2)
+        self.tab2Mean.setObjectName(u"tab2Mean")
+        self.tab2Mean.setReadOnly(True)
+
+        self.horizontalLayout_17.addWidget(self.tab2Mean)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_17, 3, 0, 1, 1)
+
+        self.horizontalLayout_16 = QHBoxLayout()
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.label_15 = QLabel(self.groupBox_2)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setMinimumSize(QSize(50, 0))
+
+        self.horizontalLayout_16.addWidget(self.label_15)
+
+        self.tab2Max = QLineEdit(self.groupBox_2)
+        self.tab2Max.setObjectName(u"tab2Max")
+        self.tab2Max.setReadOnly(True)
+
+        self.horizontalLayout_16.addWidget(self.tab2Max)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_16, 1, 1, 1, 1)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.label_13 = QLabel(self.groupBox_2)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMinimumSize(QSize(50, 0))
+
+        self.horizontalLayout_15.addWidget(self.label_13)
+
+        self.tab2Min = QLineEdit(self.groupBox_2)
+        self.tab2Min.setObjectName(u"tab2Min")
+        self.tab2Min.setReadOnly(True)
+
+        self.horizontalLayout_15.addWidget(self.tab2Min)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_15, 1, 0, 1, 1)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.label_12 = QLabel(self.groupBox_2)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setMinimumSize(QSize(50, 0))
+
+        self.horizontalLayout_13.addWidget(self.label_12)
+
+        self.tab2Num = QLineEdit(self.groupBox_2)
+        self.tab2Num.setObjectName(u"tab2Num")
+        self.tab2Num.setReadOnly(True)
+
+        self.horizontalLayout_13.addWidget(self.tab2Num)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_13, 0, 0, 1, 1)
+
+        self.horizontalLayout_18 = QHBoxLayout()
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.label_17 = QLabel(self.groupBox_2)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setMinimumSize(QSize(50, 0))
+
+        self.horizontalLayout_18.addWidget(self.label_17)
+
+        self.tab2Mid = QLineEdit(self.groupBox_2)
+        self.tab2Mid.setObjectName(u"tab2Mid")
+        self.tab2Mid.setReadOnly(True)
+
+        self.horizontalLayout_18.addWidget(self.tab2Mid)
+
+
+        self.gridLayout.addLayout(self.horizontalLayout_18, 3, 1, 1, 1)
+
+        self.tab2ExportButton = QPushButton(self.groupBox_2)
+        self.tab2ExportButton.setObjectName(u"tab2ExportButton")
+
+        self.gridLayout.addWidget(self.tab2ExportButton, 0, 1, 1, 1)
+
+
+        self.verticalLayout.addWidget(self.groupBox_2)
 
         self.label_11 = QLabel(self.tab2)
         self.label_11.setObjectName(u"label_11")
@@ -379,20 +468,19 @@ class Ui_Dialog(object):
         self.controlTabWidget.addTab(self.tab2, "")
         self.tab3 = QWidget()
         self.tab3.setObjectName(u"tab3")
-        self.verticalLayout_5 = QVBoxLayout(self.tab3)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.label_7 = QLabel(self.tab3)
         self.label_7.setObjectName(u"label_7")
-
-        self.verticalLayout_5.addWidget(self.label_7)
-
-        self.horizontalLayout_7 = QHBoxLayout()
+        self.label_7.setGeometry(QRect(9, 9, 132, 16))
+        self.widget = QWidget(self.tab3)
+        self.widget.setObjectName(u"widget")
+        self.horizontalLayout_7 = QHBoxLayout(self.widget)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer_11)
 
-        self.pushButton_3 = QPushButton(self.tab3)
+        self.pushButton_3 = QPushButton(self.widget)
         self.pushButton_3.setObjectName(u"pushButton_3")
 
         self.horizontalLayout_7.addWidget(self.pushButton_3)
@@ -400,9 +488,6 @@ class Ui_Dialog(object):
         self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer_12)
-
-
-        self.verticalLayout_5.addLayout(self.horizontalLayout_7)
 
         self.controlTabWidget.addTab(self.tab3, "")
 
@@ -458,10 +543,16 @@ class Ui_Dialog(object):
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab1), QCoreApplication.translate("Dialog", u"RoI\u533a\u57df\u6846\u9009", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u91c7\u7528\u5f62\u6001\u5b66\u65b9\u6cd5\u5bf9\u56fe\u50cf\u8fdb\u884c\u8fde\u901a\u57df\u8ba1\u6570", None))
         self.tab2OpenImgButton.setText(QCoreApplication.translate("Dialog", u"\u6253\u5f00\u56fe\u7247", None))
-        self.tab2CntButton.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
         self.tab2Hist.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
         self.label_8.setText(QCoreApplication.translate("Dialog", u"\u4eae\u5ea6\u9608\u503c", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"\u9762\u79ef\u9608\u503c", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("Dialog", u"\u8ba1\u6570\u7ed3\u679c", None))
+        self.label_16.setText(QCoreApplication.translate("Dialog", u"\u5e73\u5747\u534a\u5f84", None))
+        self.label_15.setText(QCoreApplication.translate("Dialog", u"\u6700\u5927\u534a\u5f84", None))
+        self.label_13.setText(QCoreApplication.translate("Dialog", u"\u6700\u5c0f\u534a\u5f84", None))
+        self.label_12.setText(QCoreApplication.translate("Dialog", u"\u6570\u91cf", None))
+        self.label_17.setText(QCoreApplication.translate("Dialog", u"\u4e2d\u4f4d\u534a\u5f84", None))
+        self.tab2ExportButton.setText(QCoreApplication.translate("Dialog", u"\u5bfc\u51fa\u7ed3\u679c", None))
         self.label_11.setText(QCoreApplication.translate("Dialog", u"\u8bf4\u660e\uff1a\n"
 "- \u9ad8\u4e8e\u4eae\u5ea6\u9608\u503c\u7684\u70b9\u624d\u4f1a\u88ab\u7edf\u8ba1\n"
 "- \u8c03\u4f4e\u4eae\u5ea6\u9608\u503c\u6709\u52a9\u4e8e\u9009\u51fa\u4f4e\u4eae\u5ea6\u7684\u6f0f\u68c0\u70b9\n"
