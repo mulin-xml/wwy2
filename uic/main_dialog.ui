@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="controlTabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="RoI" name="tab1">
       <attribute name="title">
@@ -683,60 +683,67 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab3">
+     <widget class="Watershed" name="tab3">
       <attribute name="title">
        <string>胶图算灰度</string>
       </attribute>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>132</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>用于对胶图进行面积计算</string>
-       </property>
-      </widget>
-      <widget class="QWidget" name="">
-       <layout class="QHBoxLayout" name="horizontalLayout_7">
-        <item>
-         <spacer name="horizontalSpacer_11">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_3">
-          <property name="text">
-           <string>开始计数</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_12">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="MyGraphicsView" name="tab3GV">
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>用于对胶图进行面积计算</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="tab3OpenImg">
+         <property name="text">
+          <string>开始计数</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_11">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1032</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_12">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>1032</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>页</string>
+      </attribute>
      </widget>
     </widget>
    </item>
@@ -765,6 +772,12 @@
    <class>CircleCounter</class>
    <extends>QWidget</extends>
    <header>lib/circlecounter.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Watershed</class>
+   <extends>QWidget</extends>
+   <header>lib/watershed.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

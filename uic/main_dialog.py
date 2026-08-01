@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_dialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.1
+## Created by: Qt User Interface Compiler version 6.4.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QGridLayout,
 from lib.circlecounter import CircleCounter
 from lib.mygraphicsview import MyGraphicsView
 from lib.roi import RoI
+from lib.watershed import Watershed
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -466,30 +467,39 @@ class Ui_Dialog(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_12)
 
         self.controlTabWidget.addTab(self.tab2, "")
-        self.tab3 = QWidget()
+        self.tab3 = Watershed()
         self.tab3.setObjectName(u"tab3")
+        self.verticalLayout_5 = QVBoxLayout(self.tab3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
+        self.tab3GV = MyGraphicsView(self.tab3)
+        self.tab3GV.setObjectName(u"tab3GV")
+        self.tab3GV.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.tab3GV.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+        self.verticalLayout_5.addWidget(self.tab3GV)
+
         self.label_7 = QLabel(self.tab3)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(9, 9, 132, 16))
-        self.widget = QWidget(self.tab3)
-        self.widget.setObjectName(u"widget")
-        self.horizontalLayout_7 = QHBoxLayout(self.widget)
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_11)
+        self.verticalLayout_5.addWidget(self.label_7)
 
-        self.pushButton_3 = QPushButton(self.widget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.tab3OpenImg = QPushButton(self.tab3)
+        self.tab3OpenImg.setObjectName(u"tab3OpenImg")
 
-        self.horizontalLayout_7.addWidget(self.pushButton_3)
+        self.verticalLayout_5.addWidget(self.tab3OpenImg)
 
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_11 = QSpacerItem(1032, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_12)
+        self.verticalLayout_5.addItem(self.horizontalSpacer_11)
+
+        self.horizontalSpacer_12 = QSpacerItem(1032, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.verticalLayout_5.addItem(self.horizontalSpacer_12)
 
         self.controlTabWidget.addTab(self.tab3, "")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.controlTabWidget.addTab(self.tab, "")
 
         self.verticalLayout_4.addWidget(self.controlTabWidget)
 
@@ -508,7 +518,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.controlTabWidget.setCurrentIndex(1)
+        self.controlTabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -560,7 +570,8 @@ class Ui_Dialog(object):
 "- \u8c03\u4f4e\u9762\u79ef\u9608\u503c\u6709\u52a9\u4e8e\u9009\u51fa\u7279\u522b\u5c0f\u7684\u70b9", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab2), QCoreApplication.translate("Dialog", u"\u8fde\u901a\u57df\u8ba1\u6570", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"\u7528\u4e8e\u5bf9\u80f6\u56fe\u8fdb\u884c\u9762\u79ef\u8ba1\u7b97", None))
-        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
+        self.tab3OpenImg.setText(QCoreApplication.translate("Dialog", u"\u5f00\u59cb\u8ba1\u6570", None))
         self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab3), QCoreApplication.translate("Dialog", u"\u80f6\u56fe\u7b97\u7070\u5ea6", None))
+        self.controlTabWidget.setTabText(self.controlTabWidget.indexOf(self.tab), QCoreApplication.translate("Dialog", u"\u9875", None))
     # retranslateUi
 
